@@ -1,0 +1,22 @@
+<article class="post" >
+    <div class="status">
+      <span class="answer answered" title="1 个答案">1</span>
+      <span class="vote">1 </span>
+    </div>
+    <div class="p-summary">
+     <h2>
+    <a href="http://segmentfault.com/q/1010000000138905" title="SQL查询唯一字段时加上LIMIT 1会不会更快？">{{ post.title }}</a>
+     </h2>
+     <div class="meta">
+                        <span class="views">5 次浏览</span>
+                                                <ul class="meta-tags">
+                                                        <li>
+                                <a data-tid="1040000000089439" href="http://segmentfault.com/t/mysql">mysql</a>,                             </li>
+                                                        <li>
+                                <a data-tid="1040000000119849" href="http://segmentfault.com/t/query">query</a>                            </li>
+                                                    </ul>
+                                                <span class="datetime">3分钟前</span>
+       </div>
+    </div>
+
+</article>

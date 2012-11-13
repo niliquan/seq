@@ -1,0 +1,204 @@
+*{
+	margin:0;
+	padding:0;
+	}
+	body{
+		color: rgba(0,0,0,1);
+		height: 100%;
+		overflow: auto;
+		}
+		html, button, input, select, textarea {
+font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+font-size: 13px;
+color: #333;
+}
+.text-27, .edit-post .tokeninput {
+font-size: 13px;
+padding: 6px 6px;
+}
+.input-text, .text-27, .edit-post .tokeninput, .text-28, .text-32, .text-34, .text-42, .textarea-text, .textarea-14, .textarea-13 {
+background: white;
+border: 1px solid #CCC;
+border-color: #AFAFAF #CCC #CCC #AFAFAF;
+width: 100%;
+-webkit-box-shadow: inset 1px 1px 2px rgba(153, 153, 153, 0.35);
+-moz-box-shadow: inset 1px 1px 2px rgba(153,153,153,0.35);
+box-shadow: inset 1px 1px 2px rgba(153, 153, 153, 0.35);
+}
+	div{
+		display: block;}
+	#header{
+		position: fixed;
+		top: 0;
+		left: 0;
+		background:  transparent url(../pic/header-bg.png?epxMW9) repeat-x 0 0;
+		height: 50px;
+		width: 100%;
+		z-index: 888;
+	}
+	.inner, .mini-inner{
+		width: 978px;
+		margin:0 auto;
+		padding:0;
+	}
+	#logo{
+		float: left;
+		margin-top: 10px;	
+		}
+a{
+	text-decoration: none;}
+	
+	#header a {color: #444}
+
+html, button, input, select, textarea{
+	font-family: "Helvetica Neue",Helvetica, Arial, sans-serif;
+	font-size: 13px;
+	color: #333;
+	}
+
+#dashboard{
+	float: left;
+	margin: 8px 5px 0 14px;
+	width: 320px;
+	}
+.btn-regular {
+background-clip: padding-box;
+background-color: #FAFAFA;
+background-image: -webkit-linear-gradient(top, #FAFAFA, #EAEAEA);
+border-bottom-color: #AAA;
+border-bottom-left-radius: 3px;
+border-bottom-right-radius: 3px;
+border-bottom-style: solid;
+border-bottom-width: 1px;
+border-left-color: #BBB;
+border-left-style: solid;
+border-left-width: 1px;
+border-right-color: #BBB;
+border-right-style: solid;
+border-right-width: 1px;
+border-top-color: #BBB;
+border-top-left-radius: 3px;
+border-top-right-radius: 3px;
+border-top-style: solid;
+border-top-width: 1px;
+box-shadow: rgba(0, 0, 0, 0.078125) 0px 1px 0px 0px;
+color: #333;
+cursor: auto;
+display: inline-block;
+float: none;
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+font-size: 13px;
+font-weight: bold;
+height: 27px;
+line-height: 27px;
+margin-top: 0px;
+padding-bottom: 0px;
+padding-left: 14px;
+padding-right: 14px;
+padding-top: 0px;
+text-decoration: none;
+text-shadow: white 0px 1px 0px;
+width: 25px;
+}
+#top-nav{
+	margin-left: 15px;
+	float: left;
+	margin-top: 8px;
+	font-weight: bold;}
+#nav{
+	float: right;
+	padding: 0;
+	font-size: 0;
+	position: relative;
+	}
+.edge{
+	margin-bottom: 60px;
+	margin-top: 82px;}
+	#main{
+		float: left;
+		width: 725px;
+		}
+#secondary{
+float: right;
+width: 222px;
+}
+.post .status{
+	float: left;
+	width: 54px;
+	}
+.post .p-summary{
+	margin-left: 74px;
+	}
+.post{
+	border-bottom: 1px solid #E6E6E6;
+	padding: 14px 10px;
+	word-wrap: break-word;
+	}
+.post .status .answer{
+	background: #9A4444 url(../pic/status.png?edxNRn) no-repeat 35px 6px
+	}
+
+.post .status span{
+	display:  block;
+	padding-left: 5px;
+	height: 22px;
+	line-height: 22px;
+	font-size: 14px;
+	color: white;
+	border-top-right-radius:2px;
+	border-bottom-right-radius:0;
+	border-bottom-left-radius:0;
+	border-top-left-radius:2px;
+	}
+	.post .status .vote{
+background:#F3F3F3 url(../pic/status.png?edxNRn) no-repeat 35px -45px		;
+color: #999;
+border-top-right-radius:0;
+	border-bottom-right-radius:2px;
+	border-bottom-left-radius:2px;
+	border-top-left-radius:0;
+		}
+
+.post h2{
+
+margin: 0 0 10px;	
+	}
+	
+h2 {
+display: block;
+font-size: 1.5em;
+-webkit-margin-before: 0.83em;
+-webkit-margin-after: 0.83em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+font-weight: bold;
+}
+.post .meta .meta-tags li {
+position: relative;
+display: inline-block;
+}
+.post .meta{
+	color: #999;
+	}
+	
+	.post .meta .meta-tags {
+list-style-type: none;
+display: inline;
+background: transparent url(../img/post-list.png?b55lHM) no-repeat 0 -17px;
+}
+.post .meta .views, .post .meta .meta-tags, .post .meta .datetime, .post .meta .meta-user {
+padding-left: 20px;
+margin-right: 5px;
+}
+.post .meta .meta-tags {
+list-style-type: none;
+}
+
+a {
+color: #009A61;
+text-decoration: none;
+rgin: 0 0 10px;	
+	}
+.post h2 a {
+color: #333;
+}	

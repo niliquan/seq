@@ -1,0 +1,12 @@
+<h1 class="q-title" >
+           <span>{{ post.title }}</span>
+</h1>
+<div id="question">
+                       <article></article>
+</div>
+<div id="anwser"></div>
+<div id="write-answer"> 
+           {% for answer in answers % }
+                                     {% include "anwser.html" %}
+                               {% end%}
+</div>

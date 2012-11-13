@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+ 
+{% block content-main %}
+                       
+          {% include "detail-post.html" %}
+           
+{% end %}
+
+{% block content-secondary %}
+                       {% include "side.html"%}
+                       
+{% end %}
