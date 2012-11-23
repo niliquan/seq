@@ -1,9 +1,10 @@
 {% extends "base.html"%} 
  {% block detail-header%}
+ { }
  <div class="detail" id="user-detail"> 
  <div class="d-card">
-            <a href="http://segmentfault.com/u/%E5%85%AB%E6%96%B9%E5%90%8D%E5%8A%A8"><img class="big-avatar-img" src="http://sfault-avatar.b0.upaiyun.com/112/242/1122429302-1030000000114935_huge128" alt="八方名动" /></a>
-            <h1>     八方名动            </h1>
+            <a href="/u/{{ userinfo.urlname }}"><img class="big-avatar-img" src="{{ static_url("") }} " alt="{{ userinfo.name }}" /></a>
+            <h1>     {{ userinfo.name }}         </h1>
             <span class="quick-action hidden"></span>
             <div class="excerpt">
                 <div><p>面朝大海春暖花开</p></div>
@@ -34,7 +35,7 @@
         </div><!-- end .subhead -->
         
          <div id="user-answer">
-  //      {% for comment in comments %}
+
           <article class="post" id="a-1020000000136054">
           <div class="post-big-vote">
                     <span>0</span>赞
@@ -46,7 +47,7 @@
                     </div>
                 </div>
             </article>
-   //     {% end %}
+ 
         </div>
         
         <div class="subhead">
@@ -55,7 +56,7 @@
         </div><!-- end .subhead -->
         
         <div id="user-question">
-     //   {% for question questions %}
+   
                             <article class="post" id="q-1010000000141416">
                 <div class="status">
                     <span class="answer answered" title="4 个答案">4</span>
@@ -74,7 +75,7 @@
                     </div>
                 </div>
             </article>
-   //     {% end %}
+  
    </div><!-- end #user-question -->
 
 {% end %}

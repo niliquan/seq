@@ -11,9 +11,11 @@
     <a href="/detail/{{ post.id }}" title="SQL查询唯一字段时加上LIMIT 1会不会更快？">{{ post.title }}</a>
      </h2>
      <div class="meta">
-                        <span class="views">5 次浏览</span>
+                        <span class="views">5 次浏览{{  current_user }}</span>
                         <ul class="meta-tags">
                                   {% for tag in post.tags %}
+                                        
+
                                        <li><a href="/detial">{{ tag }}</a></li>
                                    {% end %}
                         </ul>

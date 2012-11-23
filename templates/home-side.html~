@@ -1,8 +1,29 @@
+  {% if not userinfo %}
+          
+                   <aside class="greeting">
+                                <h3>这是什么网站？</h3>
+                                <p>这是一个专业面向开发者的技术问答社区，你可以在这里提出任何与开发相关的问题，并得到同行的解答和评价。无需注册即可登录。</p>
+            <p class="hor-tabs">
+                <a href="/user/login">立即登录</a>
+                <i></i>
+                <a href="/about">了解更多</a>
+            </p>
+        </aside>
+                
+      
+        
+{% end %}
+
+ {% if  userinfo %} 
  <aside id="my-account" class="clearfix">
-            <div class="my-avatar avatar-64" style="background: url(http://s.segmentfault.com/img/user-64.png) no-repeat center center">
-                             <a href="/update">修改头像</a>
-            </div>
-            <h3><a href="http://segmentfault.com/u/asycs">asycs</a></h3>
+             
+            {% if  userinfo.pic_url %} 
+                     <div class="my-avatar avatar-64" style="background: url({{ userinfo.pic_url }}) no-repeat center center">
+                             <a href="/update"></a>
+                    </div>
+             {% end %}
+        
+            <h3><a href="/u/{{ userinfo.urlname }}" >{{  current_user }}</a></h3>
             <p>
                  <a href="http://segmentfault.com/u/asycs/rank">-4 声望</a> &bull;
                  <a href="http://segmentfault.com/u/asycs/awards">0 徽章</a>
@@ -38,4 +59,5 @@
            <li class="nothing">暂时没有新鲜事哦<br />关注了别人就会有新鲜事</li>
            </ul>
 </aside>
+           {% end %}               
         

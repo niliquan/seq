@@ -54,7 +54,6 @@ class EmbeddedTag(TagDocument,EmbeddedComment):
 class User(MotorDocument):
     _id=ObjectId
     id=_id
-
     name=StringField()
     email=StringField()
     tags=SortedListField(EmbeddedDocumentField(EmbeddedTag))

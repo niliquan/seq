@@ -70,9 +70,12 @@ class HomeHandler(BaseHandler):
     @tornado.web.addslash
     @check_last_modified
     def get(self,page_num=0):
-        print  (self.posts)
+        email=self.get_secure_cookie("email")
+        userinfo=yield motor.Op(self.db.users.find_one,{"email":email})
+        if userinfo:
+            userinfo=User(**userinfo)
         self.render('home.html',
-                posts=self.posts)
+                posts=self.posts,userinfo=userinfo)
   
 
 class UpdateinfoHandler(BaseHandler):
@@ -129,14 +132,17 @@ class UpdateinfoHandler(BaseHandler):
 
         image_path="./static/pic/"
         image_format=send_file["filename"]
-        tmp_name=image_path+str(int(time.time()))+image_format
+        storename="pic/"+ str(int(time.time()))+image_format
+        tmp_name="./static/"+storename
+#        tmp_name=image_path+str(int(time.time()))+image_format
         image_one.save(tmp_name)
+        
         tmp_file.close()
-        userinfo.update({"pic_url":tmp_name})
-        print tmp_name
+        userinfo.update({"pic_url":storename})
 
 #修改用户数据
         user_id=yield motor.Op(self.db.users.update,{"_id":id},userinfo)
+        self.set_secure_cookie("name",self.get_arugument("name"))
         self.finish()
 
 
@@ -186,6 +192,14 @@ class LoginHandler(BaseHandler):
             else :
                 self.redirect("/user/login")
 
+class LogoutHandler(BaseHandler):
+    def get(self):
+        self.clear_all_cookies()
+        self.redirect("/")
+
+    def post(self):
+        self.clear_all_cookies()
+        self.redirect("/")
 
 class RegisterHandler(BaseHandler):
     
@@ -224,6 +238,7 @@ class RegisterHandler(BaseHandler):
         self.finish()
         
 class  AskHandler(BaseHandler):
+    @tornado.web.authenticated
     def get(self):
         self.render("ask.html")
     
@@ -267,12 +282,13 @@ class SearchHandler(BaseHandler):
 
 
 class PersonalPageHandler(BaseHandler):
+
     @tornado.web.asynchronous
     @gen.engine
     def get(self,name):
-        self.write(name)
-        user_id=yield motor.Op(self.db.users.find_one,{"urlname":name})
-        self.render("personalpage.html")
+        userinfo=yield motor.Op(self.db.users.find_one,{"urlname":name})
+        userinfo=User(**userinfo)
+        self.render("personalpage.html",userinfo=userinfo)
 
 
      
