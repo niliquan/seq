@@ -1,0 +1,17 @@
+{ % extends "base.html" %}
+
+
+{% block main-content %}
+
+            <div class="tab-nav">
+            <a href="http://segmentfault.com/">问题</a>
+            <a href="http://segmentfault.com/tags" class="current">标签</a>
+            <!-- <a href="http://segmentfault.com/users">人物</a>
+            <a href="http://segmentfault.com/badges">徽章</a> -->
+            <div class="hor-tabs sub-tab">
+                                            <a class="current" href="http://segmentfault.com/tags">导航</a>
+                                                            <a href="http://segmentfault.com/tags/hottest">热门的</a>
+                                                            <a href="http://segmentfault.com/tags/newest">最新的</a>
+                                        </div>
+            </div>
+{% end %}

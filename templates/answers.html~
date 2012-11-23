@@ -1,5 +1,21 @@
-<article>
-<div class="post-cell"></div>
-<div class="fmt post-content"></div>
-<div class="post-foot"></div>
+<article class="a-post-available" >
+    <div class="post-cell">
+         <a href=""  class="post-big-vote"><span>2</span>赞</a>
+         <a href="" class="post-big-hate tip-pop">踩</a>
+   
+    </div>
+    <div class="fmt post-content">
+             <p>{{ answer.content }}</p>
+    </div>
+    <div class="post-foot">
+              <table class="post-parter">
+                     <tbody>
+                         <tr>
+                            <td ><a href="" ></a></td>
+                            <td class="post-author"><img src="" alt="" ></td>
+                         </tr>
+                     </tbody>
+               </table>
+</table>
+    </div>
 </article>

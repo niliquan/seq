@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content-main %}
+        <h2 class="common-title">我的个人资料</h2>
+        <div id="main" class="settings">
+        <form action="/user/settings"  enctype="multipart/form-data"  method="post" class="session-form">
+            <div class="session-aside">
+                          <img class="avatar-128" src="http://s.segmentfault.com/img/user-128.png" alt="头像" />
+                          <div class="change-avatar">
+                          <input type="file" name="avatar" class="file" />
+                          <a href="#" class="btn-regular">修改头像</a>
+                          </div>
+                                                                    从电脑中选择图片上传, 图像大小不要超过 2 MB
+            </div>
+            <p>
+                <label for="setting-name">* 称呼</label>
+                <input name="name" id="setting-name" type="text" maxlength="32" holder="常用昵称或真名" class="text-32" value="asycs" required />
+                            </p>
+            <p class="fix-size">
+                <label>性别</label>
+                <input name="gender" type="radio" id="sex-none" value="0" /> <label for="sex-none">保密</label> &nbsp;&nbsp;
+                <input name="gender" type="radio" id="sex-male" value="1" checked /> <label for="sex-male">男</label> &nbsp;&nbsp;
+                <input name="gender" type="radio" id="sex-female" value="2" /> <label for="sex-female">女</label>
+            </p>
+            <p>
+                <label for="setting-birthday">生日</label>
+                <input name="birthday" id="setting-birthday" type="text" holder="格式 YYYY-mm-dd" value={{ userinfo.birthday }} class="text-32" />
+                            </p>
+            <p>
+                <label for="setting-address">现居地</label>
+                <input name="address" id="setting-address" type="text" maxlength="16" holder="例如: 湖北武汉" value={{ userinfo.address }} class="text-32" />
+                            </p>
+            <p>
+                <label for="setting-homepage">个人网站</label>
+                <input name="homepage" id="setting-homepage" type="url" holder="http://example.com" value="" class="text-32" />
+                            </p>
+            <p>
+                <label for="setting-description">自我简介</label>
+                <textarea name="description" id="setting-description" class="textarea-14" rows="4"></textarea>
+            </p>
+            
+            
+            <div class="form-action">
+                <input type="submit" class="btn btn-big" value="提交" />
+            </div>
+        </form>
+    </div>
+{% end %}

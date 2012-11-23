@@ -1,0 +1,49 @@
+{% extends "base.html"%}
+
+{% block fullpage %}
+<div class="min-inner session-edge">
+    <h2 class="big-title">登录</h2>
+    <p class="title-description">我们推荐您使用下列第三方帐号登录，无需注册更安全</p>
+    <div class="auth-login">
+                <p>
+                       <a class="auth-big" href="https://segmentfault.com/user/oauth/google">
+                       <img src="{{static_url("pic/auth-google-big.png")}}" alt="Google" />Google
+                       </a>
+                       <a class="auth-big" href="https://segmentfault.com/user/oauth/weibo">
+                       <img src="{{static_url("pic/auth-weibo-big.png")}}" alt="新浪微博" />新浪微博</a>
+                       <a class="auth-big" href="https://segmentfault.com/user/oauth/renren">
+                       <img src="{{static_url("pic/auth-renren-big.png")}}" alt="人人网" />人人网</a>
+                       <a class="auth-big" href="https://segmentfault.com/user/oauth/qq">
+                       <img src="{{static_url("pic/auth-qq-big.png")}}" alt="腾讯微博" />腾讯微博</a>
+                       <a class="more-auth" href="#" title="更多"></a>
+                </p>
+                <p id="more-auth" class="hidden">
+                       <a class="auth-small" href="https://segmentfault.com/user/oauth/twitter"><img src="http://s.segmentfault.com/img/icon/auth-twitter.png" alt="Twitter" />Twitter</a>
+                       <a class="auth-small" href="https://segmentfault.com/user/oauth/facebook"><img src="http://s.segmentfault.com/img/icon/auth-facebook.png" alt="Facebook" />Facebook</a>
+                       <a class="auth-small" href="https://segmentfault.com/user/oauth/github"><img src="http://s.segmentfault.com/img/icon/auth-github.png" alt="GitHub" />GitHub</a>
+                       <a class="auth-small" href="https://segmentfault.com/user/oauth/douban"><img src="http://s.segmentfault.com/img/icon/auth-douban.png" alt="豆瓣" />豆瓣</a>
+                </p>
+    </div>
+
+    <div class="sfid-login">
+                          或者使用本站帐号登录 ( <a href="http://segmentfault.com/user/register">注册</a> 或
+         <a href="http://segmentfault.com/user/forgot">找回密码</a> )
+        <form action="https://segmentfault.com/user/session" method="post">
+            <p>
+                <label for="mail" class="hid">Email 地址</label>
+                <input class="text-34" type="email" placeholder="请输入登录邮箱"  name="mail" holder="Email 地址" value="" required />
+                
+            </p>
+            <p>
+                <label for="password" class="hid">登录密码</label>
+                <input class="text-34" type="password" placeholder="请输入登录密码" "  name="password" holder="登录密码" required />
+            </p>
+                 <input class="btn-big" type="submit" value="登录" />
+            <div><input type="checkbox" id="remember" name="remember" value="1" checked /> 
+                 <label for="remember">下次自动登录</label>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% end %}

@@ -1,17 +1,10 @@
-*{
-	margin:0;
-	padding:0;
-	}
+
 	body{
 		color: rgba(0,0,0,1);
 		height: 100%;
 		overflow: auto;
 		}
-		html, button, input, select, textarea {
-font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-font-size: 13px;
-color: #333;
-}
+
 .text-27, .edit-post .tokeninput {
 font-size: 13px;
 padding: 6px 6px;
@@ -32,7 +25,7 @@ box-shadow: inset 1px 1px 2px rgba(153, 153, 153, 0.35);
 		top: 0;
 		left: 0;
 		background:  transparent url(../pic/header-bg.png?epxMW9) repeat-x 0 0;
-		height: 50px;
+		height: 60px;
 		width: 100%;
 		z-index: 888;
 	}
@@ -111,12 +104,26 @@ width: 25px;
 	font-size: 0;
 	position: relative;
 	}
+	#nav > li {
+display: inline-block;
+font-size: 14px;
+}
+#nav > li > a {
+display: block;
+padding: 0 10px;
+height: 44px;
+line-height: 44px;
+color: #444;
+font-weight: bold;
+border: 1px solid transparent;
+border-width: 0 1px 0 1px;
+}
 .edge{
 	margin-bottom: 60px;
 	margin-top: 82px;}
 	#main{
 		float: left;
-		width: 725px;
+		width: 780px;
 		}
 #secondary{
 float: right;
@@ -202,3 +209,211 @@ rgin: 0 0 10px;
 .post h2 a {
 color: #333;
 }	
+.tab-nav {
+position: relative;
+margin-bottom: 20px;
+border-bottom: 1px solid #CCC;
+}
+.tab-nav > a.current {
+border-bottom: 1px solid #999;
+margin-bottom: -1px;
+background: #999;
+color: white;
+}
+.tab-nav > a {
+display: inline-block;
+margin-right: 4px;
+padding: 0 15px;
+min-width: 50px;
+background-color: #EEE;
+font-size: 14px;
+font-weight: bold;
+text-align: center;
+text-decoration: none;
+line-height: 30px;
+color: #666;
+}
+
+.tab-nav .sub-tab {
+position: absolute;
+right: 0;
+bottom: -2px;
+font-size: 13px;
+line-height: 25px;
+}
+.tab-nav .sub-tab a.current {
+border: 1px solid #CCC;
+border-bottom: 2px solid white;
+color: #666;
+}
+.tab-nav .sub-tab a {
+padding: 0 8px;
+}
+.hor-tabs a.current, .editor a.current {
+color: #444;
+text-decoration: none;
+pointer-events: none;
+}
+.hor-tabs a, .editor a {
+color: #93B9AB;
+}
+.hor-tabs a, .editor a, .hor-tabs i, .editor i {
+display: inline-block;
+vertical-align: middle;
+}
+
+.pagenav, .load-more {
+text-align: center;
+font-size: 16px;
+font-weight: bold;
+margin-top: 30px;
+}
+.pagenav .current, .load-more .current {
+color: #333;
+pointer-events: none;
+}
+.pagenav a, .load-more a, .pagenav span, .load-more span {
+display: inline-block;
+margin: 0 4px;
+padding: 0 10px;
+height: 30px;
+line-height: 30px;
+border: 1px solid #E6E6E6;
+color: #009A61;
+}
+.pagenav a, .load-more a, .pagenav span, .load-more span {
+display: inline-block;
+margin: 0 4px;
+padding: 0 10px;
+height: 30px;
+line-height: 30px;
+border: 1px solid #E6E6E6;
+color: #009A61;
+}
+
+.pagenav span, .load-more span {
+padding: 0 6px;
+color: #999;
+}
+.pagenav a, .load-more a, .pagenav span, .load-more span {
+display: inline-block;
+margin: 0 4px;
+padding: 0 10px;
+height: 30px;
+line-height: 30px;
+border: 1px solid #E6E6E6;
+color: #009A61;
+}
+#my-account {
+margin-bottom: 25px;
+}
+.clearfix, .wrap, .inner, .min-inner, .subhead, .post, .pagenav, .load-more, .detail, .post-foot {
+zoom: 1;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
+display: block;
+}
+ aside, footer, header, hgroup, nav, section {
+display: block;
+}
+.box {
+margin-top: 30px;
+padding-top: 25px;
+border-top: 1px solid #DDD;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
+display: block;
+}
+#my-account h3 {
+font-size: 18px;
+margin: 0;
+}
+#my-account .my-avatar {
+position: relative;
+float: left;
+margin-right: 15px;
+}
+.avatar-64 {
+width: 64px;
+height: 64px;
+padding: 3px;
+}
+.avatar, .avatar-24, .avatar-32, .avatar-40, .avatar-64, .avatar-128 {
+border: 1px solid #DDD;
+background: white;
+}
+#my-account p {
+margin: 9px 0 0;
+color: #DDD;
+}
+.info {
+background: #D9EDF7;
+border: 1px solid #B5D5F7;
+color: #326AA8;
+}
+#my-account .info {
+display: block;
+margin-top: 20px;
+text-align: center;
+border: 0;
+}
+.right {
+float: right;
+}
+.i-more, .i-prev, .i-next {
+display: inline-block;
+overflow: hidden;
+margin-top: 2px;
+width: 18px;
+height: 14px;
+background: #EEE url(../img/more.png?egM3St) no-repeat center 6px;
+text-indent: -999px;
+}
+.box h3 {
+margin: 0 0 20px;
+font-size: 14px;
+}
+.tag-ranking-list {
+margin-top: -8px;
+}
+.reset-ul, .user-list, .hidden-layer, #search-box, #msg-box, .dropdown-menu, .common-search-list, #nav, .list-menu, .timestream, .hor-count, .link-list, .cat-list, .tag-list, .tag-ranking-list, .user-site-status, .cat-info, .reputation-list, .user-rep, .comment-list, .common-search-list.sl-tag ul, .edit-post .tokeninput {
+list-style-type: none;
+margin: 0;
+padding: 0;
+}
+.timestream {
+word-wrap: break-word;
+}
+.timestream li.nothing {
+padding: 50px 0;
+border: 1px dashed #D6D6D6;
+color: #999;
+text-align: center;
+line-height: 1.5;
+}
+.tag-list li:first-child, .tag-ranking-list li:first-child {
+margin-top: 0;
+}
+.tag-ranking-list li {
+display: inline-block;
+margin: 8px 4px 0 0;
+}
+.tag-list li, .tag-ranking-list li {
+margin-top: 8px;
+line-height: 0;
+}
+user agent stylesheetli {
+display: list-item;
+text-align: -webkit-match-parent;
+}
+.tag-img {
+padding-left: 32px;
+background-position: 8px center;
+background-repeat: no-repeat;
+}
+#my-account h3 a {
+color: #333;
+}
+#my-account p a, #my-account p span {
+color: #999;
+}

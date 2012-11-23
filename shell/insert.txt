@@ -1,0 +1,33 @@
+db.posts.insert({"author": "LeBron James",
+                 "title" : " this is the total posts test",
+                 "tags": ["python","tornado"],
+                 "content": "tornado is so excellent framework ,python is so interesting , go into the world python without hesitation",
+                 "comments": [
+                                {"content":"First ground,hhahha !i got it" , "name":"DeWane Wade"},
+                             ]
+               }
+            
+               )
+************************************************************************************
+
+db.posts.insert( {"author": "Json Kidd",
+                 "title" : " how to build a ubuntu server",
+                 "tags": ["ubuntu","linux],
+                 "content": "ubuntu is a nice linux distribution so many soft can be reached ,safe and high capbility, also some opensource software avilable",
+                 "comments": [
+                                {"content":"I am the most popular basketball start ever in the world hahahaha!" , "name":"Tracy MacGrady"},
+                             ]
+               })
+***********************************************************************************
+db.posts.insert(   {"author": "Jremmy Lin",
+                 "title" : " someting about using vim tricks",
+                 "tags": ["python","vim"],
+                 "content": "how to build a python ide with vim ",
+                 "comments": [
+                                {"content":"First ground,i will beat you,dont funk me any more" , "name":"Ben Wallace"},
+                             ]
+               })
+
+
+
+

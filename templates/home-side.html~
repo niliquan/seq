@@ -1,0 +1,41 @@
+ <aside id="my-account" class="clearfix">
+            <div class="my-avatar avatar-64" style="background: url(http://s.segmentfault.com/img/user-64.png) no-repeat center center">
+                             <a href="/update">修改头像</a>
+            </div>
+            <h3><a href="http://segmentfault.com/u/asycs">asycs</a></h3>
+            <p>
+                 <a href="http://segmentfault.com/u/asycs/rank">-4 声望</a> &bull;
+                 <a href="http://segmentfault.com/u/asycs/awards">0 徽章</a>
+            </p>
+            <p></p>
+            <a class="info" href="/update">您还没有上传头像, <strong>立即上传</strong></a>
+</aside>
+
+<aside class="box follow-tags">
+       <a href="http://segmentfault.com/tags/following" class="i-more tip-pop right" data-tip="s:更多">更多</a>
+       <h3>关注 <a href="http://segmentfault.com/tags/following">4</a> 个标签</h3>
+       <ul class="tag-ranking-list show-pop-tag">
+         <li>
+          <a data-tid="1040000000089488" href="http://segmentfault.com/t/mongodb" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/185/215/185215561-i-1040000000089488_icon);">mongodb</a>
+         </li>
+         <li>
+          <a data-tid="1040000000089467" href="http://segmentfault.com/t/vim" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/668/701/668701366-i-1040000000089467_icon);">vim</a>
+         </li>
+         <li>
+         <a data-tid="1040000000089534" href="http://segmentfault.com/t/python" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/338/144/3381442710-i-1040000000089534_icon);">python</a>
+         </li>
+          <li>
+             <a data-tid="1040000000090141" href="http://segmentfault.com/t/css3" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/101/156/1011561524-i-1040000000090141_icon);">css3</a>
+         </li>
+       </ul>
+</aside>
+                                
+        
+<aside class="box">
+        <a href="http://segmentfault.com/user/timeline" class="tip-pop i-more right" data-tip="s:更多">更多</a>
+          <h3>新鲜事</h3>
+          <ul class="timestream show-pop-tag">
+           <li class="nothing">暂时没有新鲜事哦<br />关注了别人就会有新鲜事</li>
+           </ul>
+</aside>
+        

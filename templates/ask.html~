@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+ {% block detail-header %}
+ <h2 class="common-title">提出新问题</h2>
+ {% end %}
+ 
+{% block content-main %}
+ <div id="content" class="edit-post">
+       <form id="ask" action="/ask" method="post">
+          <div class="p">
+         
+                <input type="text" name="title" tabindex="1" value="" class="text-34" autocomplete="off" spellcheck="false" placeholder="标题，用一句话概括你的问题" />
+                <div class="edit-notice edit-title-notice boot-arrow-lt hidden">
+                      <h3>标题应该直接</h3>
+                      <p>不要在标题中使用与问题无关的话语，不要使用口语化情绪化的词语，这些对解决问题毫无帮助</p>
+                      <h3>确定是一个问题</h3>
+                      <p>所有提交的内容都应该有确切的答案，而不仅仅是被讨论</p>
+                </div>
+          </div>
+          
+         <div class="editor">
+                 <a href="#" title="粗体文本 (快捷键 Ctrl+B)" class="btnBold"></a>
+                 <a href="#" title="斜体文本 (快捷键 Ctrl+I)" class="btnItalic"></a>
+                 <a href="#" title="代码文本 (快捷键 Ctrl+D)" class="btnCode"></a>
+                  <i></i><a href="#" title="引用段落 (快捷键 Ctrl+Q)" class="btnQuote"></a>
+                 <a href="#" title="代码 (快捷键 Ctrl+K)" class="btnPre"></a>
+                 <a href="#" title="标签链接 (快捷键 Ctrl+T)" class="btnTag"></a>
+              <i></i><a href="#" title="副标题 (快捷键 Ctrl+H)" class="btnHeading"></a>
+                 <a href="#" title="分割线 (快捷键 Ctrl+R)" class="btnHr"></a>
+                 <a href="#" title="普通列表 (快捷键 Ctrl+U)" class="btnUl"></a>
+                 <a href="#" title="数字列表 (快捷键 Ctrl+O)" class="btnOl"></a>
+                <i></i><a href="#" title="链接 (快捷键 Ctrl+L)" class="btnLink"></a>
+                 <a href="#" title="图片 (快捷键 Ctrl+G)" class="btnImg"></a>
+                 <a href="#" title="打开高级编辑器" class="btnAdvance right"></a>
+         </div>
+          <div class="p">
+                    <label for="qtext" class="hid">内容</label>
+                    <textarea id="qtext" class="textarea-14" name="content" tabindex="3" autocomplete="off" spellcheck="false" data-advanced="0" rows="15"></textarea>
+                   <div class="edit-notice edit-text-notice boot-arrow-lt hidden">
+                       <h3>尽量使用格式化语言排版</h3>
+                       <p>杂乱的文字会直接降低潜在回答者的兴趣。以下格式是我们所支持的，您还可以<a href="http://segmentfault.com/faq#q6" target="_blank">了解更多</a></p>
+                       <ul>
+                            <li><code><strong>**粗体文本**</strong></code></li>
+                            <li><code><em>''斜体文本''</em></code></li>
+                            <li><code>`转义代码`</code></li>
+                            <li><code><strong>== 标题 ==</strong></code></li>
+                            <li><code>[[http://..|链接名称]]</code></li>
+                            <li><code> &gt; 引用段落</code> </li>
+           
+                        </ul>
+                   </div>
+        </div>
+
+        <div class="p">
+                    <label for="token-input-tag" class="hid">标签，输入后按 Tab 键选择</label>
+                    <input type="text" id="tag" class="text-32" name="tags" tabindex="4" data-value="[]" />
+                    <div class="edit-notice edit-tag-notice boot-arrow-lb hidden">
+                        <h3>标签应关联问题涉及的方向</h3>
+                        <p><strong>不要把标题拆分作为标签</strong>，这对信息组织毫无益处</p>
+                        <h3>尽量复用而非重复创造</h3>
+                        <p>如非必要，尽量使用已经存在的热门标签。如需手动创建也请务必保持标签的通用性</p>                              
+                    </div>
+        </div>
+
+        <div class="form-action">
+                    <span class="left">
+                      <input type="checkbox" disabled> 转发到新浪微博 <a href="http://segmentfault.com/user/settings?tab=auth" target="_blank" tabindex="6">绑定 &crarr;</a>
+                    </span>
+                    <input type="submit" class="btn btn-big" tabindex="7" value="提交问题" />
+        </div>
+
+             <div class="fmt preview"></div>
+    </form>
+</div>
+
+{% end %}
+

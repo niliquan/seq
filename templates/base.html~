@@ -3,18 +3,23 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
     <link rel="stylesheet" href="{{static_url("css/base.css")}}">
+    <link rel="stylesheet" href="{{static_url("css/posts.css")}}">
+     <link rel="stylesheet" href="{{static_url("css/side.css")}}">
+    <link rel="stylesheet" href="{{static_url("css/fullpage.css")}}">
+          
+          
     <title>a answer web</title>
   </head>
   <body>  
          <header id="header">
          <div class="inner">    
                             <div id="logo" >
-                                      <a href="#" class="tip-pop"><img src="{{static_url("pic/logo.png")}}" alt="" ></a>
+                                      <a href="/" class="tip-pop"><img src="{{static_url("pic/logo.png")}}" alt="" ></a>
                             </div>
                             <div id="dashboard">
                                       <form id="search" action="#">
                                       <input class="text-27 input-search placeholder" type="text" name="q" speech="speech" x-webkit-speech="x-webkit-speech" autocomplete="off" spellcheck="false" holder="给我一个答案，我能改变世界" required="">
-                                      <
+                                      
                                       </form>
                             </div>
                           
@@ -22,18 +27,23 @@
                             <div id="top-nav">
                                     <a href="http://segmentfault.com/ask" class="btn-regular" title="点击后出现提问引导">提问</a>
                             </div>
-                            <ul id="nav">
-                                     <li class="home">
-                                     </li>
-                                     <li class="has-sub"></li>
-                                     <li class="has-sub split"></li>
-                                     <li id="drop-link-wrap" class="has-sub"></li>
-                             </ul>
+                          <ul id="nav">
+                <li class="home">
+                    <a href="/">首页</a>
+                </li>
+                                <li><a id="login-link" href="/user/login">登录</a></li>
+                <li><a href="/user/register">注册</a></li>
+                            </ul><!-- end #nav -->
          </div>
         </header>
         
         <div class="wrap edge">
+          {% block fullpage %}
+                                        {% end %}
               <div class="inner ">
+                                      {% block detail-header %}
+                                        {%  end %}
+                                      
                         <div id="main">{% block content-main %}{% end %}</div>
                         <div id="secondary">{% block content-secondary %}{% end %}</div>
               </div>

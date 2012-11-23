@@ -1,0 +1,400 @@
+.post .p-summary .author {
+float: right;
+margin: 2px 0 0 10px;
+line-height: 1;
+}
+
+.avatar-32 {
+width: 32px;
+height: 32px;
+padding: 1px;
+}
+.avatar, .avatar-24, .avatar-32, .avatar-40, .avatar-64, .avatar-128 {
+border: 1px solid #DDD;
+background: white;
+}
+.q-title, .a-title {
+margin: 0 0 30px;
+padding: 0 0 14px;
+border-bottom: 1px solid #BBB;
+font-size: 20px;
+-webkit-box-shadow: inset 0 -2px 0 #EEE;
+-moz-box-shadow: inset 0 -2px 0 #eee;
+box-shadow: inset 0 -2px 0 #EEE;
+}
+	.q-post{
+		margin-bottom: 30px;
+		border-bottom: 1px solid #BBB;
+		}
+.post-cell {
+float: left;
+width: 44px;
+text-align: center;
+}
+
+.post-big-vote, .post-big-hate {
+display: block;
+padding: 6px 6px 5px;
+border: 1px solid #DDD;
+border-bottom: 1px solid #CCC;
+background: #F3F3F3 url(../img/vote.png?SuzrD) no-repeat 7px 38px;
+cursor: pointer;
+color: #777;
+font-size: 12px;
+text-align: right;
+line-height: 1;
+-webkit-box-shadow: inset 0 1px 0 white,0 1px 2px #E3E3E3;
+-moz-box-shadow: inset 0 1px 0 white,0 1px 2px #e3e3e3;
+box-shadow: inset 0 1px 0 white,0 1px 2px #E3E3E3;
+-webkit-text-shadow: 0 1px 0 white;
+-moz-text-shadow: 0 1px 0 white;
+text-shadow: 0 1px 0 white;
+}
+.post-fav {
+display: block;
+background: transparent url(../img/fav.png?bkDAez) no-repeat 2px -5px;
+margin-top: 10px;
+padding-top: 32px;
+color: #999;
+cursor: pointer;
+}
+.post-content {
+margin-left: 64px;
+}
+.fmt {
+font-size: 14px;
+line-height: 1.6;
+word-wrap: break-word;
+}
+.post-foot {
+position: relative;
+font-size: 13px;
+margin-left: 64px;
+line-height: 1.5;
+}
+
+.post-parter {
+float: right;
+color: #999;
+vertical-align: top;
+}
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+tbody {
+display: table-row-group;
+vertical-align: middle;
+border-color: inherit;
+}
+tr {
+display: table-row;
+vertical-align: inherit;
+border-color: inherit;
+}
+
+.post-parter {
+color: #999;
+}
+.a-post {
+border-top: 1px solid #BBB;
+margin-top: -1px;
+padding: 30px 0;
+}
+
+#write-answer {
+position: relative;
+border-top: 2px solid #EEE;
+padding: 30px 0 0 64px;
+}
+#main {
+float: left;
+width: 726px;
+}
+.settings {
+border-top: 1px solid #DDD;
+padding-top: 26px;
+}
+.settings .session-form {
+margin-left: 120px;
+}
+.session-form {
+width: 390px;
+line-height: 1.6;
+position: relative;
+}
+form {
+margin: 0;
+}
+.settings .session-form .session-aside {
+margin-right: 120px;
+width: 160px;
+}
+.session-form .session-aside {
+position: absolute;
+right: -330px;
+width: 252px;
+color: #666;
+}
+.settings .session-form .session-aside img {
+margin: 0 0 10px;
+}
+.session-form .session-aside img {
+margin-top: 5px;
+}
+.avatar-128 {
+width: 128px;
+height: 128px;
+padding: 6px;
+}
+
+.avatar, .avatar-24, .avatar-32, .avatar-40, .avatar-64, .avatar-128 {
+border: 1px solid #DDD;
+background: white;
+}
+
+.settings .session-form .session-aside .change-avatar {
+margin-bottom: 15px;
+
+}
+.settings .session-form .session-aside .loading {
+padding-left: 25px;
+background: transparent url(../img/loader.gif?cKNSHW) no-repeat left center;
+}
+.settings .session-form .session-aside .change-avatar {
+margin-bottom: 15px;
+}
+.hidden, .q-info .active-edit, .q-info .edit-disabled .i-cancel, .q-info .edit-disabled .add-tag {
+display: none;
+}
+a.btn-regular {
+line-height: 25px;
+}
+.btn-regular {
+height: 25px;
+font-size: 13px;
+font-weight: normal;
+}
+
+.session-form p {
+position: relative;
+}
+form p, .form p, form .p, .form .p {
+position: relative;
+margin: 24px 0;
+}
+p, pre {
+margin: 1em 0;
+}
+
+.settings label {
+position: absolute;
+display: inline-block;
+left: -120px;
+top: 7px;
+width: 100px;
+font-size: 14px;
+font-weight: bold;
+text-align: right;
+}
+.text-32 {
+font-size: 14px;
+padding: 8px 6px;
+}
+
+.settings .fix-size {
+font-size: 14px;
+}
+.session-form p {
+position: relative;
+}
+form p, .form p, form .p, .form .p {
+position: relative;
+margin: 24px 0;
+}
+p, pre {
+margin: 1em 0;
+}
+user agent stylesheetp {
+display: block;
+-webkit-margin-before: 1em;
+-webkit-margin-after: 1em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+}
+.settings label {
+position: absolute;
+display: inline-block;
+left: -120px;
+top: 7px;
+width: 100px;
+font-size: 14px;
+font-weight: bold;
+text-align: right;
+}
+input[type="checkbox"], input[type="radio"] {
+box-sizing: border-box;
+padding: 0;
+}
+html, button, input, select, textarea {
+font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+font-size: 13px;
+color: #333;
+}
+button, input {
+line-height: normal;
+}
+button, input, select, textarea {
+font-size: 100%;
+margin: 0;
+vertical-align: baseline;
+}
+input[type="checkbox"], input[type="radio"] {
+box-sizing: border-box;
+padding: 0;
+}
+html, button, input, select, textarea {
+font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+font-size: 13px;
+color: #333;
+}
+button, input {
+line-height: normal;
+}
+button, input, select, textarea {
+font-size: 100%;
+margin: 0;
+vertical-align: baseline;
+}
+.session-form p {
+position: relative;
+}
+form p, .form p, form .p, .form .p {
+position: relative;
+margin: 24px 0;
+}
+.textarea-14 {
+font-size: 14px;
+}
+.textarea-text, .textarea-14, .textarea-13 {
+padding: 6px;
+font-family: Menlo,Monaco,Consolas,"Lucida Console","Courier New",monospace;
+line-height: 1.6;
+overflow: auto;
+resize: none;
+}
+.form-action {
+text-align: right;
+}
+.form-action .btn {
+margin-left: 10px;
+}
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+-webkit-appearance: button;
+cursor: pointer;
+}
+.btn-big {
+height: 36px;
+font-size: 14px;
+padding-left: 18px;
+padding-right: 18px;
+}
+
+
+.settings .fix-size label ~ label {
+position: static;
+width: auto;
+font-weight: normal;
+}
+.settings .fix-size label {
+top: 0;
+}
+.common-title {
+margin: 0 0 20px;
+font-size: 20px;
+}
+.edit-post p:first-child, .edit-post .p:first-child {
+margin-top: 0;
+}
+form p, .form p, form .p, .form .p {
+position: relative;
+margin: 24px 0;
+}
+.edit-post .suppose {
+margin-top: -25px;
+margin-bottom: 24px;
+padding: 14px;
+border: 1px solid #CCC;
+font-size: 14px;
+line-height: 1.8;
+}
+
+.text-34 {
+font-size: 16px;
+padding: 9px 6px;
+}
+.editor {
+margin-bottom: -15px;
+}
+.editor .btnBold {
+background-position: -2px -2px;
+}
+.editor a {
+width: 26px;
+height: 26px;
+background: transparent url(../pic/editor-sprite.png?eHMmCO) no-repeat 0 -2px;
+border: 1px solid transparent;
+}
+.hor-tabs a, .editor a {
+color: #93B9AB;
+}
+.hor-tabs a, .editor a, .hor-tabs i, .editor i {
+display: inline-block;
+vertical-align: middle;
+}
+.editor .btnItalic {
+background-position: -32px -2px;
+}
+.editor .btnCode {
+background-position: -62px -2px;
+}
+.editor .btnQuote {
+background-position: -92px -2px;
+}
+.editor .btnPre {
+background-position: -122px -2px;
+}
+.editor .btnTag {
+background-position: -422px -2px;
+}
+.editor .btnHeading {
+background-position: -152px -2px;
+}
+.editor .btnHr {
+background-position: -182px -2px;
+}
+.editor .btnUl {
+background-position: -212px -2px;
+}
+.editor .btnOl {
+background-position: -242px -2px;
+}
+
+.editor .btnLink {
+background-position: -272px -2px;
+}
+
+.editor .btnImg {
+background-position: -302px -2px;
+}
+
+.editor .btnAdvance {
+background-position: -482px -2px;
+}
+form p, .form p, form .p, .form .p {
+position: relative;
+margin: 24px 0;
+}
+.textarea-14 {
+font-size: 14px;
+}

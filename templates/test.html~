@@ -1,0 +1,12 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>上载文件表单</title></head> 
+<body> 
+<form action="/test"  name="uploadform" method="post">
+      
+               <li><input name="name" type="text" size="30" ></li><br>
+            <button type="submit">upload</button> 
+</form>
+</body>
+</html>
