@@ -29,7 +29,7 @@
                  <a href="http://segmentfault.com/u/asycs/awards">0 徽章</a>
             </p>
             <p></p>
-            <a class="info" href="/update">您还没有上传头像, <strong>立即上传</strong></a>
+            <a class="info" href="/user/settings">您还没有上传头像, <strong>立即上传</strong></a>
 </aside>
 
 <aside class="box follow-tags">

@@ -142,7 +142,8 @@ class UpdateinfoHandler(BaseHandler):
 
 #修改用户数据
         user_id=yield motor.Op(self.db.users.update,{"_id":id},userinfo)
-        self.set_secure_cookie("name",self.get_arugument("name"))
+        self.set_secure_cookie("name",self.get_argument("name"))
+        self.redirect("/")
         self.finish()
 
 
@@ -263,6 +264,7 @@ class  AskHandler(BaseHandler):
         post.update({"title":self.title,"content":self.content,"tags":self.tags})
         post_id=yield motor.Op(self.db.posts.insert,post)
         self.finish()
+        self.redirect("/")
         return
  
 

@@ -18,7 +18,7 @@
  <aside id="my-account" class="clearfix">
              
             {% if  userinfo.pic_url %} 
-                     <div class="my-avatar avatar-64" style="background: url({{ userinfo.pic_url }}) no-repeat center center">
+                     <div class="my-avatar avatar-64" style="background: url({{ static_url("") }}{{ userinfo.pic_url }}) no-repeat center center">
                              <a href="/update"></a>
                     </div>
              {% end %}
@@ -29,7 +29,7 @@
                  <a href="http://segmentfault.com/u/asycs/awards">0 徽章</a>
             </p>
             <p></p>
-            <a class="info" href="/update">您还没有上传头像, <strong>立即上传</strong></a>
+            <a class="info" href="/user/settings">您还没有上传头像, <strong>立即上传</strong></a>
 </aside>
 
 <aside class="box follow-tags">
