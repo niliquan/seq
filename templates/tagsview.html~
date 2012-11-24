@@ -1,17 +1,112 @@
-{ % extends "base.html" %}
+{% extends "basepro.html" %}
 
 
-{% block main-content %}
-
-            <div class="tab-nav">
-            <a href="http://segmentfault.com/">问题</a>
-            <a href="http://segmentfault.com/tags" class="current">标签</a>
+ {% block content-main %}
+              
+     <div class="tab-nav">
+            <a href="/">问题</a>
+            <a href="/t/tags" class="current">标签</a>
             <!-- <a href="http://segmentfault.com/users">人物</a>
             <a href="http://segmentfault.com/badges">徽章</a> -->
-            <div class="hor-tabs sub-tab">
-                                            <a class="current" href="http://segmentfault.com/tags">导航</a>
-                                                            <a href="http://segmentfault.com/tags/hottest">热门的</a>
-                                                            <a href="http://segmentfault.com/tags/newest">最新的</a>
-                                        </div>
-            </div>
+                    <div class="hor-tabs sub-tab">
+                        <a class="current" href="/tags">导航</a>
+                        <a href="/tags/hottest">热门的</a>
+                        <a href="/tags/newest">最新的</a>
+                    </div>
+     </div>
+            
+         
+     <div class="tag-tree">
+            <section>
+            <h3><span>iOS 开发</span></h3>
+            <ul class="tag-ranking-list">
+            <li><a href="/t/ios" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/231/798/2317981655-i-1040000000089442_icon);" data-tid="1040000000089442">ios</a></li>
+            <li><a href="/t/iphone" class="tag" data-tid="1040000000089498">iphone</a></li>
+            <li><a href="/t/ipad" class="tag" data-tid="1040000000090638">ipad</a></li>
+            <li><a href="/t/objective-c" class="tag" data-tid="1040000000090209">objective-c</a></li>
+            <li><a href="http://segmentfault.com/t/sqlite" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/714/062/714062139-i-1040000000090354_icon);" data-tid="1040000000090354">sqlite</a></li>
+            <li><a href="http://segmentfault.com/t/safari" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/386/473/3864737154-i-1040000000089499_icon);" data-tid="1040000000089499">safari</a></li>
+            <li><a href="http://segmentfault.com/t/xcode" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/942/050/942050221-i-1040000000089579_icon);" data-tid="1040000000089579">xcode</a></li>
+            <li><a href="http://segmentfault.com/t/phonegap" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/178/088/1780882066-i-1040000000115193_icon);" data-tid="1040000000115193">phonegap</a></li>
+            <li><a href="http://segmentfault.com/t/cocoa" class="tag" data-tid="1040000000090722">cocoa</a></li>
+            <li><a href="http://segmentfault.com/t/javascript" class="tag" data-tid="1040000000089436">javascript</a></li>           
+            <li><a href="http://segmentfault.com/t/macosx" class="tag" data-tid="1040000000090220">macosx</a></li>            
+            </ul></section>
+            
+            <section>
+            <h3><span>Android 开发</span></h3>
+            <ul class="tag-ranking-list">
+            <li><a href="http://segmentfault.com/t/android" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/676/908/676908637-i-1040000000089658_icon);" data-tid="1040000000089658">android</a></li>
+            <li><a href="http://segmentfault.com/t/java" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/354/807/3548072706-i-1040000000089449_icon);" data-tid="1040000000089449">java</a></li>
+            <li><a href="http://segmentfault.com/t/eclipse" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/513/361/513361510-i-1040000000089509_icon);" data-tid="1040000000089509">eclipse</a></li>
+            <li><a href="http://segmentfault.com/t/xml" class="tag" data-tid="1040000000089583">xml</a></li>
+            <li><a href="http://segmentfault.com/t/phonegap" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/178/088/1780882066-i-1040000000115193_icon);" data-tid="1040000000115193">phonegap</a></li>
+            <li><a href="http://segmentfault.com/t/database" class="tag" data-tid="1040000000089876">database</a></li>
+            <li><a href="http://segmentfault.com/t/json" class="tag" data-tid="1040000000090043">json</a></li>
+            <li><a href="http://segmentfault.com/t/webview" class="tag" data-tid="1040000000090505">webview</a></li>
+            </ul></section>
+            
+            <section><h3><span>Python 开发</span></h3>
+            <ul class="tag-ranking-list"><li><a href="http://segmentfault.com/t/python" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/338/144/3381442710-i-1040000000089534_icon);" data-tid="1040000000089534">python</a></li><li><a href="http://segmentfault.com/t/django" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/106/562/1065623784-i-1040000000089564_icon);" data-tid="1040000000089564">django</a></li>
+            <li><a href="http://segmentfault.com/t/flask" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/989/447/989447373-i-1040000000125263_icon);" data-tid="1040000000125263">flask</a></li>
+            <li><a href="http://segmentfault.com/t/tornado" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/249/541/2495414618-i-1040000000116331_icon);" data-tid="1040000000116331">tornado</a></li><li><a href="http://segmentfault.com/t/web.py" class="tag" data-tid="1040000000090740">web.py</a></li>
+            <li><a href="http://segmentfault.com/t/sqlalchemy" class="tag" data-tid="1040000000125013">sqlalchemy</a></li>
+            <li><a href="http://segmentfault.com/t/virtualenv" class="tag" data-tid="1040000000123810">virtualenv</a></li>
+            </ul></section>
+            
+            <section><h3><span>服务器</span></h3>
+            <ul class="tag-ranking-list">
+            <li><a href="http://segmentfault.com/t/linux" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/165/999/1659994484-i-1040000000089392_icon);" data-tid="1040000000089392">linux</a></li>
+            <li><a href="http://segmentfault.com/t/unix" class="tag" data-tid="1040000000090646">unix</a></li>
+            <li><a href="http://segmentfault.com/t/ubuntu" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/394/450/3944508884-i-1040000000090245_icon);" data-tid="1040000000090245">ubuntu</a></li>
+            <li><a href="http://segmentfault.com/t/windows-server" class="tag" data-tid="1040000000090609">windows-server</a></li>
+            <li><a href="http://segmentfault.com/t/centos" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/122/905/1229053881-i-1040000000090249_icon);" data-tid="1040000000090249">centos</a></li>
+            <li><a href="http://segmentfault.com/t/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1" class="tag" data-tid="1040000000090107">负载均衡</a></li>
+            <li><a href="http://segmentfault.com/t/%E7%BC%93%E5%AD%98" class="tag" data-tid="1040000000090401">缓存</a></li>
+            <li><a href="http://segmentfault.com/t/apache" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/557/479/557479056-i-1040000000089761_icon);" data-tid="1040000000089761">apache</a></li>
+            <li><a href="http://segmentfault.com/t/nginx" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/101/378/1013789055-i-1040000000090145_icon);" data-tid="1040000000090145">nginx</a></li>
+            </ul></section>
+            
+            <section><h3>
+           <span>开放平台</span></h3>
+           <ul class="tag-ranking-list">
+           <li><a href="http://segmentfault.com/t/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/162/784/1627841118-i-1040000000125894_icon);" data-tid="1040000000125894">新浪微博</a>
+           </li><li><a href="http://segmentfault.com/t/%E4%BA%BA%E4%BA%BA%E7%BD%91" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/785/543/785543565-i-1040000000089426_icon);" data-tid="1040000000089426">人人网</a></li>
+           <li><a href="http://segmentfault.com/t/%E5%BE%AE%E4%BF%A1" class="tag" data-tid="1040000000090818">微信</a></li>
+           <li><a href="http://segmentfault.com/t/%E7%99%BE%E5%BA%A6" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/135/182/1351823857-i-1040000000090113_icon);" data-tid="1040000000090113">百度</a></li>
+           <li><a href="http://segmentfault.com/t/%E8%A1%97%E6%97%81" class="tag" data-tid="1040000000137017">街旁</a></li><li><a href="http://segmentfault.com/t/facebook" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/100/015/1000155854-i-1040000000089479_icon);" data-tid="1040000000089479">facebook</a></li>
+           <li><a href="http://segmentfault.com/t/twitter" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/266/700/2667002852-i-1040000000122015_icon);" data-tid="1040000000122015">twitter</a></li>
+           </ul></section>
+           
+           <section><h3><span>开发语言</span></h3>
+           <ul class="tag-ranking-list"><li><a href="http://segmentfault.com/t/java" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/354/807/3548072706-i-1040000000089449_icon);" data-tid="1040000000089449">java</a></li>
+           <li><a href="http://segmentfault.com/t/c" class="tag" data-tid="1040000000089457">c</a></li>
+           <li><a href="http://segmentfault.com/t/c%2B%2B" class="tag" data-tid="1040000000089741">c++</a></li>
+           <li><a href="http://segmentfault.com/t/php" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/389/392/3893927083-i-1040000000089387_icon);" data-tid="1040000000089387">php</a></li>
+           <li><a href="http://segmentfault.com/t/python" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/338/144/3381442710-i-1040000000089534_icon);" data-tid="1040000000089534">python</a></li>
+           <li><a href="http://segmentfault.com/t/javascript" class="tag" data-tid="1040000000089436">javascript</a></li>
+           <li><a href="http://segmentfault.com/t/c%23" class="tag" data-tid="1040000000089581">c#</a></li>
+           <li><a href="http://segmentfault.com/t/ruby" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/236/829/2368296350-i-1040000000089699_icon);" data-tid="1040000000089699">ruby</a></li>
+           <li><a href="http://segmentfault.com/t/objective-c" class="tag" data-tid="1040000000090209">objective-c</a></li>
+           <li><a href="http://segmentfault.com/t/go" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/925/692/925692835-i-1040000000090203_icon);" data-tid="1040000000090203">go</a></li>
+           <li><a href="http://segmentfault.com/t/lua" class="tag" data-tid="1040000000090208">lua</a></li>
+            <li><a href="http://segmentfault.com/t/perl" class="tag" data-tid="1040000000089698">perl</a></li>
+           <li><a href="http://segmentfault.com/t/node.js" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/357/719/3577194675-i-1040000000089918_icon);" data-tid="1040000000089918">node.js</a></li>
+           <li><a href="http://segmentfault.com/t/erlang" class="tag" data-tid="1040000000090201">erlang</a></li>
+           <li><a href="http://segmentfault.com/t/scala" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/409/135/4091358505-i-1040000000090228_icon);" data-tid="1040000000090228">scala</a></li>
+           <li><a href="http://segmentfault.com/t/bash" class="tag" data-tid="1040000000089686">bash</a></li>
+           <li><a href="http://segmentfault.com/t/actionscript" class="tag" data-tid="1040000000090194">actionscript</a></li>
+           </ul></section>
+           
+           <section><h3><span>云计算</span></h3>
+           <ul class="tag-ranking-list">
+           <li><a href="http://segmentfault.com/t/%E4%BA%91%E8%AE%A1%E7%AE%97" class="tag" data-tid="1040000000090078">云计算</a></li>
+           <li><a href="http://segmentfault.com/t/%E5%8F%88%E6%8B%8D%E4%BA%91%E5%AD%98%E5%82%A8" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/383/373/3833734455-i-1040000000126696_icon);" data-tid="1040000000126696">又拍云存储</a></li>
+           <li><a href="http://segmentfault.com/t/%E4%B8%83%E7%89%9B%E4%BA%91%E5%AD%98%E5%82%A8" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/119/227/1192272433-i-1040000000137810_icon);" data-tid="1040000000137810">七牛云存储</a></li>
+           <li><a href="http://segmentfault.com/t/sina-app-engine" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/366/659/3666591814-i-1040000000126678_icon);" data-tid="1040000000126678">sina-app-engine</a></li>
+           <li><a href="http://segmentfault.com/t/amazon-web-services" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/183/229/183229213-i-1040000000126680_icon);" data-tid="1040000000126680">amazon-web-services</a></li>
+           <li><a href="http://segmentfault.com/t/google-app-engine" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/193/506/193506699-i-1040000000126683_icon);" data-tid="1040000000126683">google-app-engine</a></li>
+           <li><a href="http://segmentfault.com/t/%E7%99%BE%E5%BA%A6%E4%BA%91" class="tag" data-tid="1040000000134134">百度云</a></li>
+           </ul></section>
+    </div>
 {% end %}

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "basepro.html" %}
  
 {% block content-main %}
                        
@@ -7,6 +7,6 @@
 {% end %}
 
 {% block content-secondary %}
-                       {% include "side.html"%}
+                       {% include "detail-side.html"%}
                        
 {% end %}

@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "basepro.html" %}
 {% block content-main %}
         <h2 class="common-title">我的个人资料</h2>
         <div id="main" class="settings">
@@ -13,7 +13,7 @@
             </div>
             <p>
                 <label for="setting-name">* 称呼</label>
-                <input name="name" id="setting-name" type="text" maxlength="32" holder="常用昵称或真名" class="text-32" value="asycs" required />
+                <input name="name" id="setting-name" type="text" maxlength="32" holder="常用昵称或真名" class="text-32" value="{{ userinfo.name }}" required />
                             </p>
             <p class="fix-size">
                 <label>性别</label>
@@ -23,19 +23,19 @@
             </p>
             <p>
                 <label for="setting-birthday">生日</label>
-                <input name="birthday" id="setting-birthday" type="text" holder="格式 YYYY-mm-dd" value={{ userinfo.birthday }} class="text-32" />
+                <input name="birthday" id="setting-birthday" type="text" holder="格式 YYYY-mm-dd" value="{{ userinfo.birthday }}" class="text-32" />
                             </p>
             <p>
                 <label for="setting-address">现居地</label>
-                <input name="address" id="setting-address" type="text" maxlength="16" holder="例如: 湖北武汉" value={{ userinfo.address }} class="text-32" />
+                <input name="address" id="setting-address" type="text" maxlength="16" placeholder="例如: 湖北武汉" value="{{ userinfo.address }}" class="text-32" />
                             </p>
             <p>
                 <label for="setting-homepage">个人网站</label>
                 <input name="homepage" id="setting-homepage" type="url" holder="http://example.com" value="" class="text-32" />
                             </p>
-            <p>
+	            <p>
                 <label for="setting-description">自我简介</label>
-                <textarea name="description" id="setting-description" class="textarea-14" rows="4"></textarea>
+                <textarea name="description" id="setting-description" class="textarea-14" rows="4">{{ userinfo.description }}</textarea>
             </p>
             
             

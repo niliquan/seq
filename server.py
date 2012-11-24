@@ -12,24 +12,28 @@ from  handlers import *
 import  motor
 
 db=motor.MotorConnection().open_sync().test
+
 application= tornado.web.Application([
     (r"/ask",AskHandler),
     (r"/test",TestHandler),
     (r"/u/(?P<name>.+)/?",PersonalPageHandler),
-    (r"/user/settings",UpdateinfoHandler),
-    (r"/detail/(?P<detail_id>.+)/?",DetailHandler),
+    (r"/q/(?P<detail_id>.+)/?",DetailHandler),
+    (r"/t/(?P<tagname>.+)/?",TagDetailHandler),
     (r"/tags/?",TagsHandler),
+    (r"/",HomeHandler),
+
+    #admin
     (r"/user/logout",LogoutHandler),   
     (r"/user/login",LoginHandler),
     (r"/user/register",RegisterHandler),
-    (r"/",HomeHandler),
+    (r"/user/settings",UpdateinfoHandler)
     ],
     db=db,
     login_url="/user/login",
     template_path=os.path.join(os.path.dirname(__file__),"templates"),
     static_path=os.path.join(os.path.dirname(__file__), "static"),
     cookie_secret="bZJc2sWbQLKos6GkHn/VB9oXwQt8S0R0kRvJ5/xJ89E=",
-
+    
     )
 if __name__=="__main__":
     http_server=httpserver.HTTPServer(application)

@@ -21,6 +21,7 @@ class EmbeddedComment(Comment,EmbeddedDocument):
     pass
 
 class Author(MotorDocument):
+    urlname=StringField()
     name=StringField()
     email=StringField()
     pic_url=StringField()
@@ -41,7 +42,7 @@ class Post(MotorDocument):
     tags= SortedListField(StringField())
     vote=IntField()
     comments=SortedListField(EmbeddedDocumentField(EmbeddedComment))
-
+    viewnum=IntField()
 
 class TagDocument(Document):
     name=StringField()
@@ -54,7 +55,6 @@ class EmbeddedTag(TagDocument,EmbeddedComment):
 class User(MotorDocument):
     _id=ObjectId
     id=_id
-
     name=StringField()
     email=StringField()
     tags=SortedListField(EmbeddedDocumentField(EmbeddedTag))

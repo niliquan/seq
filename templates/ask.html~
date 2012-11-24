@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "basepro.html" %}
 
  {% block detail-header %}
  <h2 class="common-title">提出新问题</h2>

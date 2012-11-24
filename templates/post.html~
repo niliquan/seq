@@ -1,25 +1,23 @@
 <article class="post" >
     <div class="status">
-      <span class="answer answered" title="1 个答案">1</span>
+      <span class="answered" title="1 个答案">1</span>
       <span class="vote">1 </span>
     </div>
     <div class="p-summary">
-    <a class="author tip-pop" href="http://segmentfault.com/u/shunai" data-tip="n:shunai &lt;cite&gt;•&lt;/cite&gt; &lt;strong&gt;1&lt;/strong&gt;" original-title="">
+    <a class="author tip-pop" href="/u/{{ post.author.urlname }}" data-tip="n:shunai &lt;cite&gt;•&lt;/cite&gt; &lt;strong&gt;1&lt;/strong&gt;" original-title="">
     <img class="avatar-32"src="{{ static_url("") }}{{ post.author.pic_url }}" alt="shunai">
     </a>
      <h2>
-    <a href="/detail/{{ post.id }}" title="SQL查询唯一字段时加上LIMIT 1会不会更快？">{{ post.title }}</a>
+    <a href="/detail/{{ post.id }}" title="{{ post.title }}">{{ post.title }}</a>
      </h2>
      <div class="meta">
-                        <span class="views">5 次浏览{{  current_user }}</span>
+                        <span class="views">5 次浏览</span>
                         <ul class="meta-tags">
-                                  {% for tag in post.tags %}
-                                        
-
+                                  {% for tag in post.tags %}                                  
                                        <li><a href="/detial">{{ tag }}</a></li>
                                    {% end %}
                         </ul>
-                        <span class="datetime">{{post.pub_date }}</span>
+                        <span class="datetime">{{ post.formattime }}</span>
        </div>
     </div>
 

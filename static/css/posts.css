@@ -3,7 +3,9 @@ float: right;
 margin: 2px 0 0 10px;
 line-height: 1;
 }
-
+.post .status .answered {
+background: #009A61 url(../pic/status.png?cLjrz7) no-repeat 35px 6px;
+}
 .avatar-32 {
 width: 32px;
 height: 32px;
@@ -109,7 +111,7 @@ padding: 30px 0 0 64px;
 }
 #main {
 float: left;
-width: 726px;
+width: 800px;
 }
 .settings {
 border-top: 1px solid #DDD;
@@ -236,28 +238,19 @@ input[type="checkbox"], input[type="radio"] {
 box-sizing: border-box;
 padding: 0;
 }
-html, button, input, select, textarea {
-font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-font-size: 13px;
-color: #333;
-}
+
 button, input {
 line-height: normal;
 }
-button, input, select, textarea {
-font-size: 100%;
-margin: 0;
-vertical-align: baseline;
+a.btn-regular {
+line-height: 25px;
+width: 30px;
 }
 input[type="checkbox"], input[type="radio"] {
 box-sizing: border-box;
 padding: 0;
 }
-html, button, input, select, textarea {
-font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-font-size: 13px;
-color: #333;
-}
+
 button, input {
 line-height: normal;
 }
@@ -398,3 +391,6 @@ margin: 24px 0;
 .textarea-14 {
 font-size: 14px;
 }
+color: #333;
+}
+button, input {

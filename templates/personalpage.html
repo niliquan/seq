@@ -1,4 +1,4 @@
-{% extends "base.html"%} 
+{% extends "basepro.html"%} 
  {% block detail-header%}
 
  <div class="detail" id="user-detail"> 
@@ -7,8 +7,8 @@
             <h1>     {{ userinfo.name }}         </h1>
             <span class="quick-action hidden"></span>
             <div class="excerpt">
-                <div><p>面朝大海春暖花开</p></div>
-                <p class="ext-ref">  <span>辽宁大连</span> &bull;
+                <div><p>{{ userinfo.description }}</p></div>
+                <p class="ext-ref">  <span>{{ userinfo.address }}</span> &bull;
                                    <span>8月29日加入</span>
                 </p>
 
@@ -60,25 +60,12 @@
         </div><!-- end .subhead -->
         
         <div id="user-question">
+   {% for question in questions %}
    
-                            <article class="post" id="q-1010000000141416">
-                <div class="status">
-                    <span class="answer answered" title="4 个答案">4</span>
-                    <span class="vote" title="0 个赞">0</span>
-                </div>
-                <div class="p-summary">
-                    <h2><a href="http://segmentfault.com/q/1010000000141416" title="bash脚本使用相对目录的问题">bash脚本使用相对目录的问题</a></h2>
-                    <div class="meta">
-                        <span class="views">66 次浏览</span>
-                                                <ul class="meta-tags">
-                                                        <li><a data-tid="1040000000089392" href="http://segmentfault.com/t/linux">linux</a>, </li>
-                                                        <li><a data-tid="1040000000089686" href="http://segmentfault.com/t/bash">bash</a>, </li>
-                                                        <li><a data-tid="1040000000089669" href="http://segmentfault.com/t/shell">shell</a></li>
-                                                    </ul>
-                                                <span class="datetime">2天前</span>
-                    </div>
-                </div>
-            </article>
+   {% include "questions.html" %}
+   
+   {% end %}
+                   
   
    </div><!-- end #user-question -->
 

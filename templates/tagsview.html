@@ -1,29 +1,29 @@
-{ % extends "base.html" %}
+{% extends "basepro.html" %}
 
 
-{% block main-content %}
+ {% block content-main %}
               
      <div class="tab-nav">
-            <a href="http://segmentfault.com/">问题</a>
-            <a href="http://segmentfault.com/tags" class="current">标签</a>
+            <a href="/">问题</a>
+            <a href="/t/tags" class="current">标签</a>
             <!-- <a href="http://segmentfault.com/users">人物</a>
             <a href="http://segmentfault.com/badges">徽章</a> -->
                     <div class="hor-tabs sub-tab">
-                        <a class="current" href="http://segmentfault.com/tags">导航</a>
-                        <a href="http://segmentfault.com/tags/hottest">热门的</a>
-                        <a href="http://segmentfault.com/tags/newest">最新的</a>
+                        <a class="current" href="/tags">导航</a>
+                        <a href="/tags/hottest">热门的</a>
+                        <a href="/tags/newest">最新的</a>
                     </div>
      </div>
             
-            
+         
      <div class="tag-tree">
             <section>
             <h3><span>iOS 开发</span></h3>
             <ul class="tag-ranking-list">
-            <li><a href="http://segmentfault.com/t/ios" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/231/798/2317981655-i-1040000000089442_icon);" data-tid="1040000000089442">ios</a></li>
-            <li><a href="http://segmentfault.com/t/iphone" class="tag" data-tid="1040000000089498">iphone</a></li>
-            <li><a href="http://segmentfault.com/t/ipad" class="tag" data-tid="1040000000090638">ipad</a></li>
-            <li><a href="http://segmentfault.com/t/objective-c" class="tag" data-tid="1040000000090209">objective-c</a></li>
+            <li><a href="/t/ios" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/231/798/2317981655-i-1040000000089442_icon);" data-tid="1040000000089442">ios</a></li>
+            <li><a href="/t/iphone" class="tag" data-tid="1040000000089498">iphone</a></li>
+            <li><a href="/t/ipad" class="tag" data-tid="1040000000090638">ipad</a></li>
+            <li><a href="/t/objective-c" class="tag" data-tid="1040000000090209">objective-c</a></li>
             <li><a href="http://segmentfault.com/t/sqlite" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/714/062/714062139-i-1040000000090354_icon);" data-tid="1040000000090354">sqlite</a></li>
             <li><a href="http://segmentfault.com/t/safari" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/386/473/3864737154-i-1040000000089499_icon);" data-tid="1040000000089499">safari</a></li>
             <li><a href="http://segmentfault.com/t/xcode" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/942/050/942050221-i-1040000000089579_icon);" data-tid="1040000000089579">xcode</a></li>

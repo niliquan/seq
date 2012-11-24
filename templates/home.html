@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "basepro.html" %}
  
 {% block content-main %}
      <div class="tab-nav">
@@ -7,10 +7,10 @@
             <!-- <a href="http://segmentfault.com/users">人物</a>
             <a href="http://segmentfault.com/badges">徽章</a> -->
             <div class="hor-tabs sub-tab">
-                                            <a class="current" href="http://segmentfault.com/">最新的</a>
-                                                            <a href="http://segmentfault.com/hottest">热门的</a>
-                                                            <a href="http://segmentfault.com/unanswered">未回答的</a>
-                                                            <a href="http://segmentfault.com/bookmarked">我标记的</a>
+                                            <a class="current" href="/tags">最新的</a>
+                                                            <a href="/tags">热门的</a>
+                                                            <a href="/unanswered">未回答的</a>
+                                                            <a href="/unanswered">我标记的</a>
                                         </div>
        </div>                   
          {% for post in posts %}

@@ -51,12 +51,9 @@ class DetailHandler(BaseHandler):
         detail_id=detail_id.rstrip("/")
         posts=self.db.posts
         postdoc=yield motor.Op(posts.find_one,{"_id":ObjectId(detail_id)})
-        
         if not postdoc:
             raise tornado.web.HTTPError(404)
-
         postdoc=Post(**postdoc)
-        print postdoc.title
         self.render("detail.html",post=postdoc)
 
 
@@ -64,13 +61,14 @@ class HomeHandler(BaseHandler):
 
     def get_posts(self,callback,page_num=0):
         (self.db.posts.find(
-            ).skip(int(page_num)*10)
+            ).sort([('pub_date',-1)]).skip(int(page_num)*14)
             .limit(10).to_list(callback))
     
     @tornado.web.addslash
     @check_last_modified
     def get(self,page_num=0):
         email=self.get_secure_cookie("email")
+
         userinfo=yield motor.Op(self.db.users.find_one,{"email":email})
         if userinfo:
             userinfo=User(**userinfo)
@@ -104,9 +102,7 @@ class UpdateinfoHandler(BaseHandler):
         if not email and not  userinfo:
             self.redirect("/")
             return
-        print "wrong"
-     #   userinfo=User(**userinfo)
-     #   print userinfo
+
         id=userinfo["_id"]
         userinfo.update({
             "name":self.get_argument("name"),
@@ -116,29 +112,25 @@ class UpdateinfoHandler(BaseHandler):
             "description":self.get_argument("description")})
 
 #上传图片
-        if not self.request.files:
-            self.write("<script>alert('no picture')</script>")
-            self.finish()
-            return
-        send_file=self.request.files["avatar"][0]
-        print send_file["filename"]
-        tmp_file=tempfile.NamedTemporaryFile(delete=True)
-        tmp_file.write(send_file["body"])
-        tmp_file.seek(0)
-        try:
-            image_one=Image.open(tmp_file.name)
-        except IOError,error:
-            self.write('<script>alert"illegal"</script>')
+        storename=None
+        if  self.request.files and self.request.files["avatar"][0]:
+            send_file=self.request.files["avatar"][0]
+            tmp_file=tempfile.NamedTemporaryFile(delete=True)
+            tmp_file.write(send_file["body"])
+            tmp_file.seek(0)
+            try:
+                image_one=Image.open(tmp_file.name)
+            except IOError,error:
+                self.write('<script>alert"illegal"</script>')
+            image_path="./static/pic/"
+            image_format=send_file["filename"]
+            storename="pic/"+ str(int(time.time()))+image_format
+            tmp_name="./static/"+storename
+            image_one.save(tmp_name)
+            tmp_file.close()
 
-        image_path="./static/pic/"
-        image_format=send_file["filename"]
-        storename="pic/"+ str(int(time.time()))+image_format
-        tmp_name="./static/"+storename
-#        tmp_name=image_path+str(int(time.time()))+image_format
-        image_one.save(tmp_name)
-        
-        tmp_file.close()
-        userinfo.update({"pic_url":storename})
+        if storename:
+            userinfo.update({"pic_url":storename})
 
 #修改用户数据
         user_id=yield motor.Op(self.db.users.update,{"_id":id},userinfo)
@@ -258,25 +250,40 @@ class  AskHandler(BaseHandler):
             self.finish()
             return 
         userinfo=User(**userinfo)
-
+        posttime=time.time()
+        formattime=time.strftime("%Y-%m-%d",time.localtime(posttime))
         post={}
-        post.update({"author":{"name":userinfo.name,"email":userinfo.email,"pic_url":userinfo.pic_url}})
-        post.update({"title":self.title,"content":self.content,"tags":self.tags})
+        post.update({"author":{"name":userinfo.name,
+            "urlname":userinfo.urlname,
+            "email":userinfo.email,
+            "pic_url":userinfo.pic_url}})
+        post.update({"title":self.title,
+            "content":self.content,
+            "tags":self.tags,
+            "pub_date":posttime,
+            "formattime":formattime,
+            })
         post_id=yield motor.Op(self.db.posts.insert,post)
-        self.finish()
         self.redirect("/")
+        self.finish()
         return
  
 
 class TagsHandler(BaseHandler):
  
     def get(self):
-        pass
-
+        self.render("tagsview.html")
 
     def post(self):
         pass
 
+class TagDetailHandler(BaseHandler):
+
+    def get(self,tagname):
+        self.render("tag.html")
+    
+    def post(self):
+        pass
 
 class SearchHandler(BaseHandler):
     def get(self):
@@ -290,7 +297,8 @@ class PersonalPageHandler(BaseHandler):
     def get(self,name):
         userinfo=yield motor.Op(self.db.users.find_one,{"urlname":name})
         userinfo=User(**userinfo)
-        self.render("personalpage.html",userinfo=userinfo)
+        questions=yield motor.Op(self.db.post.find,{"author":{"email":userinfo.email}})
+        self.render("personalpage.html", userinfo=userinfo , questions=questions )
 
 
      

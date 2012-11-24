@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{{static_url("css/base.css")}}">
     <link rel="stylesheet" href="{{static_url("css/posts.css")}}">
      <link rel="stylesheet" href="{{static_url("css/side.css")}}">
+     <link rel="stylesheet" href="{{static_url("css/tag.css")}}">
     <link rel="stylesheet" href="{{static_url("css/fullpage.css")}}">
     	<script class="jquery library" src="/static/js/jquery-1.8.3.min.js" type="text/javascript"></script>
           
@@ -43,7 +44,7 @@
                     <a id="msg-link" href="http://segmentfault.com/user/events">消息</a>
                    </li>
                    <li class="has-sub split">
-                    <a href="http://segmentfault.com/u/asycs">{{ current_user }}</a>
+                    <a href="/u/{{ current_user }}"> {{ current_user }} </a>
                     </li>
                      <li class="has-sub split">
                      <a href="/user/settings">帐号设置</a>
@@ -51,21 +52,13 @@
                     <li class="has-sub split"><a href="/user/logout">退出</a></li>
          {% end %}
                             </ul><!-- end #nav -->
+                            <div class="clear"></div> 
          </div>
         </header>
         
         <div class="wrap edge">
-          {% block fullpage %}
-                                        {% end %}
-              <div class="inner ">
-                                      {% block detail-header %}
-                                        {%  end %}
-                                      
-                        <div id="main">{% block content-main %}{% end %}</div>
-                        <div id="secondary">{% block content-secondary %}{% end %}</div>
-              </div>
-           
-        
+            {% block fullpage %}
+             {% end %}
          </div>
   </body>
 </html>
