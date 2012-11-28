@@ -22,27 +22,27 @@
                             </table>
                        <div></div>
                        </div>
-                       
+                <div class="clear"></div> 
            </article>
 </div>
 
-<div id="answer"> 
-        {% if post.comments %}
+
+ {% if post.comments %}
+    <div id="answer"> 
          <div class="hor-tabs right">
                  <a class="current by-votes" >得票数</a>
                  <i></i>
                  <a href="#" class="by-created" >时间先后</a>
          </div>
-         {% end %}
-         
+     
            {% for answer in post.comments %}
                                      {% include "answers.html" %}
                                {% end %}
-</div>
-
+<   /div>
+   {% end %}
 <div id="writer-answer ">
         <h2 class="small-title">撰写答案</h2>   
-        <form method="post" action="http://segmentfault.com/question/answer">
+        <form method="post" action="/question/answer">
                 <div class="editor">
                                     <a href="#" title="粗体文本 (快捷键 Ctrl+B)" class="btnBold"></a>
                                     <a href="#" title="斜体文本 (快捷键 Ctrl+I)" class="btnItalic"></a> 
@@ -63,7 +63,8 @@
                  </div>
              <div class="p">
                     <label for="ans-text" class="hid">答案内容</label>
-                          <textarea id="ans-text" class="textarea-14" rows="10" autocomplete="off" spellcheck="false" data-advanced="0" name="text">
+                          <textarea id="ans-text" class="textarea-14" 
+                          rows="10" autocomplete="off" spellcheck="false" data-advanced="0" name="content">
                           </textarea>
                     <span class="resize"></span>
                     <div class="write-answer-notice boot-arrow-bl hidden">
@@ -84,7 +85,8 @@
                             <label for="check-weibo">转发到新浪微博</label>
                     </span>
                     <input type="submit" class="btn btn-big" value="提交答案">
-                    <input type="hidden" value="1010000000136389" name="id">
+                    <input type="hidden" value="{{ post.id }}" name="id">
+                
                 </div>
                 <div class="fmt preview"><p></p></div>
          </form>

@@ -16,6 +16,10 @@ class MotorDocument(Document):
 class Comment(MotorDocument):
     name=StringField()
     content=StringField()
+    pic_url=StringField()
+    email=StringField()
+   
+
 
 class EmbeddedComment(Comment,EmbeddedDocument):
     pass

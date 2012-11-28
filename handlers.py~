@@ -12,13 +12,20 @@ import motor
 import Image
 import tempfile
 
+def checkinfo(result,error):
+    if error:
+        print "no info"
+    else:
+        print"OK"
+
 def check_last_modified(get):
     @functools.wraps(get)
     @tornado.web.asynchronous
     @gen.engine
     def _get(self,*args,**kwargs):
+        print self.get_posts.__name__
         postdocs =yield motor.Op(self.get_posts,*args,**kwargs)
-        print postdocs
+        
         self.posts=posts=[
                 Post(**doc) if doc else None
                 for doc in postdocs]
@@ -59,9 +66,9 @@ class DetailHandler(BaseHandler):
 
 class HomeHandler(BaseHandler):
 
-    def get_posts(self,callback,page_num=0):
-        (self.db.posts.find(
-            ).sort([('pub_date',-1)]).skip(int(page_num)*14)
+    def get_posts(self,callback=checkinfo,page_num=0):
+        (self.db.posts.find()
+                .sort([('pub_date',-1)]).skip(int(page_num)*14)
             .limit(10).to_list(callback))
     
     @tornado.web.addslash
@@ -95,9 +102,9 @@ class UpdateinfoHandler(BaseHandler):
     @gen.engine
     def post(self):
         #查找一个用户记录
-        print "1"
+       
         email=self.get_secure_cookie("email")
-        print "2"
+ 
         userinfo=yield motor.Op(self.db.users.find_one,{"email":email})
         if not email and not  userinfo:
             self.redirect("/")
@@ -268,6 +275,31 @@ class  AskHandler(BaseHandler):
         self.finish()
         return
  
+class AnswerHandler(BaseHandler):
+    def get(self):
+        pass
+
+    @tornado.web.asynchronous
+    @gen.engine
+    def post(self):
+
+        self.email=self.get_secure_cookie("email")
+        userinfo=yield motor.Op(self.db.users.find_one,{"email":self.email})
+        userinfo=User(**userinfo)
+
+        content=self.get_argument("content")
+        id=self.get_argument("id")
+        print id
+        if not content and not userinfo and not id:
+            self.write("missing ")
+            self.finish()
+            return
+
+        comment={"name":userinfo.name,"pic_url":userinfo.pic_url,"content":content,"email":userinfo.email }
+        id=self.get_argument("id")
+        id=ObjectId(id)
+        yield motor.Op(self.db.posts.update,{"_id",id},{"$set":{"comments":comment}})
+        self.redirect("/")
 
 class TagsHandler(BaseHandler):
  
@@ -292,13 +324,20 @@ class SearchHandler(BaseHandler):
 
 class PersonalPageHandler(BaseHandler):
 
+    def get_questions(self,callback=checkinfo,page_num=0,condition={}):
+        (self.db.posts.find(condition).skip(int(page_num)*14).sort([('pub_date',-1)]).limit(10).to_list(callback))  
+  
     @tornado.web.asynchronous
     @gen.engine
     def get(self,name):
         userinfo=yield motor.Op(self.db.users.find_one,{"urlname":name})
         userinfo=User(**userinfo)
-        questions=yield motor.Op(self.db.post.find,{"author":{"email":userinfo.email}})
-        self.render("personalpage.html", userinfo=userinfo , questions=questions )
+        print userinfo.email
+        condition={"author.email":userinfo.email}
+        questions = yield motor.Op(self.get_questions,condition=condition)
+        self.questions=[Post(**question) for question in questions]
+        print self.questions
+        self.render("personalpage.html", userinfo=userinfo , questions=self.questions )
 
 
      

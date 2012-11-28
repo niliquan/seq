@@ -14,7 +14,9 @@ import  motor
 db=motor.MotorConnection().open_sync().test
 
 application= tornado.web.Application([
+
     (r"/ask",AskHandler),
+    (r"/question/anwser",AnswerHandler),
     (r"/test",TestHandler),
     (r"/u/(?P<name>.+)/?",PersonalPageHandler),
     (r"/q/(?P<detail_id>.+)/?",DetailHandler),

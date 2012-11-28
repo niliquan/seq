@@ -4,13 +4,13 @@
         <span class="vote" title="0 个赞">0</span>
      </div>
    <div class="p-summary">
-     <h2><a href="http://segmentfault.com/q/1010000000141416" title="{{ question.title }}">{{ question.title }}</a></h2>
+     <h2><a href="/u/{{ question.author.urlname }}" title="{{ question.title }}">{{ question.title }}</a></h2>
      <div class="meta">
      <span class="views">66 次浏览</span>
      <ul class="meta-tags">
-           <li><a data-tid="1040000000089392" href="http://segmentfault.com/t/linux">linux</a>, </li>
-           <li><a data-tid="1040000000089686" href="http://segmentfault.com/t/bash">bash</a>, </li>
-           <li><a data-tid="1040000000089669" href="http://segmentfault.com/t/shell">shell</a></li>
+                {% for tag in question.tags %}
+           <li><a data-tid="1040000000089392" href="http://segmentfault.com/t/linux">{{ tag }}</a>, </li>
+          {% end %} 
      </ul>
     <span class="datetime">2天前</span>
     </div>
