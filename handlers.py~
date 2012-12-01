@@ -75,10 +75,14 @@ class HomeHandler(BaseHandler):
     @check_last_modified
     def get(self,page_num=0):
         email=self.get_secure_cookie("email")
-
+       
         userinfo=yield motor.Op(self.db.users.find_one,{"email":email})
         if userinfo:
             userinfo=User(**userinfo)
+        if not self.posts:
+            self.write("no post")
+            self.finish()
+            return
         self.render('home.html',
                 posts=self.posts,userinfo=userinfo)
   
@@ -248,7 +252,6 @@ class  AskHandler(BaseHandler):
     def post(self):
         self.email=self.get_secure_cookie("email")
         self.title=self.get_argument("title")
-        print self.title
         self.content=self.get_argument("content")
         self.tags=self.get_argument("tags")
 #查找作者的信息 
@@ -276,6 +279,7 @@ class  AskHandler(BaseHandler):
         return
  
 class AnswerHandler(BaseHandler):
+
     def get(self):
         pass
 
@@ -289,16 +293,15 @@ class AnswerHandler(BaseHandler):
 
         content=self.get_argument("content")
         id=self.get_argument("id")
-        print id
         if not content and not userinfo and not id:
             self.write("missing ")
             self.finish()
             return
 
-        comment={"name":userinfo.name,"pic_url":userinfo.pic_url,"content":content,"email":userinfo.email }
+        comment={"name":userinfo.name,"pic_url":userinfo.pic_url,"content":content,"email":userinfo.email}
         id=self.get_argument("id")
         id=ObjectId(id)
-        yield motor.Op(self.db.posts.update,{"_id",id},{"$set":{"comments":comment}})
+        result=yield motor.Op(self.db.posts.update,{"_id":id},{"$addToSet":{"comments":comment}})
         self.redirect("/")
 
 class TagsHandler(BaseHandler):
@@ -311,7 +314,16 @@ class TagsHandler(BaseHandler):
 
 class TagDetailHandler(BaseHandler):
 
+    @tornado.web.asynchronous
+    @gen.engine
     def get(self,tagname):
+        if not tagname:
+            self.write("error")
+            self.finish()
+            return
+        taginfo=yield motor.Op(self.db.tags.find,{"name":tagname})
+        if not taginfo:
+            self
         self.render("tag.html")
     
     def post(self):
@@ -319,8 +331,10 @@ class TagDetailHandler(BaseHandler):
 
 class SearchHandler(BaseHandler):
     def get(self):
-        pass
+        q=self.get_argument("q")
+        limit=self.get_argument("limit")
 
+        posts=yield motor.Op(self.db.posts.find,{})
 
 class PersonalPageHandler(BaseHandler):
 
@@ -338,6 +352,23 @@ class PersonalPageHandler(BaseHandler):
         self.questions=[Post(**question) for question in questions]
         print self.questions
         self.render("personalpage.html", userinfo=userinfo , questions=self.questions )
+
+class AttentionHandler(BaseHandler):
+
+    @tornado.web.asynchronous
+    @gen.engine
+    def get(self):
+        tagname=self.get_argument("tagname")
+        email=self.get_secure_cookie("email")
+        if not email:
+            self.redirect("/user/login")
+            self.finish()
+            return
+        userinfo=yield motor.Op(self.db.users.find_one,{"email":email})
+        if not userinfo:
+            self.write("no that user")
+        id=userinfo[_id]
+        result=yield motor.Op(self.db.users.update,{"_id":id},{"$addToSet":{"tags":{"name":tagname}}})
 
 
      

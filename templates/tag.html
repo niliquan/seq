@@ -92,7 +92,11 @@
  
   <aside class="box">
             <div class="d-action">
-                <a href="###" data-tid="1040000000115193" class="btn-medium follow">加关注</a>
+              {% if  current_user and  %}
+              
+                <a href="###" data-tid=" " class="btn-medium follow">加关注</a>
+                
+                {% end %}
             </div>
             <hr class="space" />
             <h3><a href="http://segmentfault.com/t/phonegap/followers">9</a> 人关注了该标签</h3>

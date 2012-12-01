@@ -71,3 +71,10 @@ class User(MotorDocument):
     gender=StringField()
     urlname=StringField()
     address=StringField()
+
+class Tag(MotorDocument):
+    _id=ObjectId
+    id=_id
+    name=StringField()
+    introduce=StringField()
+

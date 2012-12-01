@@ -18,7 +18,7 @@
  <aside id="my-account" class="clearfix">
              
             {% if  userinfo.pic_url %} 
-                     <div class="my-avatar avatar-64" style="background: url({{ userinfo.pic_url }}) no-repeat center center">
+                     <div class="my-avatar avatar-64" style="background: url({{ static_url("") }}{{ userinfo.pic_url }}) no-repeat center center">
                              <a href="/update"></a>
                     </div>
              {% end %}

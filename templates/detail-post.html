@@ -37,9 +37,10 @@
      
            {% for answer in post.comments %}
                                      {% include "answers.html" %}
-                               {% end %}
-<   /div>
-   {% end %}
+          {% end %}
+      <div class="clear"></div> 
+   </div>
+  {% end %}
 <div id="writer-answer ">
         <h2 class="small-title">撰写答案</h2>   
         <form method="post" action="/question/answer">
