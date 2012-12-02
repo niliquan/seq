@@ -4,7 +4,9 @@
 		height: 100%;
 		overflow: auto;
 		}
-
+.post h2 {
+font-size: 15px;
+}
 .text-27, .edit-post .tokeninput {
 font-size: 13px;
 padding: 6px 6px;

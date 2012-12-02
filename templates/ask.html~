@@ -5,10 +5,12 @@
  {% end %}
  
 {% block content-main %}
+<div>
+   <input type="text" id="iconlist" value="c"></input>
+   </div>
  <div id="content" class="edit-post">
        <form id="ask" action="/ask" method="post">
           <div class="p">
-         
                 <input type="text" name="title" tabindex="1" value="" class="text-34" autocomplete="off" spellcheck="false" placeholder="标题，用一句话概括你的问题" />
                 <div class="edit-notice edit-title-notice boot-arrow-lt hidden">
                       <h3>标题应该直接</h3>
@@ -53,7 +55,7 @@
 
         <div class="p">
                     <label for="token-input-tag" class="hid">标签，输入后按 Tab 键选择</label>
-                    <input type="text" id="tag" class="text-32" name="tags" tabindex="4" data-value="[]" />
+                    <input type="text" value="c" class="text-32 " name="tags" tabindex="4" data-value="[]" />
                     <div class="edit-notice edit-tag-notice boot-arrow-lb hidden">
                         <h3>标签应关联问题涉及的方向</h3>
                         <p><strong>不要把标题拆分作为标签</strong>，这对信息组织毫无益处</p>
@@ -72,6 +74,6 @@
              <div class="fmt preview"></div>
     </form>
 </div>
-
+   
 {% end %}
 

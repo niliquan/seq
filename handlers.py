@@ -69,7 +69,7 @@ class HomeHandler(BaseHandler):
     def get_posts(self,callback=checkinfo,page_num=0):
         (self.db.posts.find()
                 .sort([('pub_date',-1)]).skip(int(page_num)*14)
-            .limit(10).to_list(callback))
+            .limit(10).to_list(callback=callback))
     
     @tornado.web.addslash
     @check_last_modified
@@ -339,7 +339,7 @@ class SearchHandler(BaseHandler):
 class PersonalPageHandler(BaseHandler):
 
     def get_questions(self,callback=checkinfo,page_num=0,condition={}):
-        (self.db.posts.find(condition).skip(int(page_num)*14).sort([('pub_date',-1)]).limit(10).to_list(callback))  
+        (self.db.posts.find(condition).skip(int(page_num)*14).sort([('pub_date',-1)]).limit(10).to_list(callback=callback))  
   
     @tornado.web.asynchronous
     @gen.engine
