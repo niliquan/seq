@@ -18,6 +18,7 @@ class Comment(MotorDocument):
     content=StringField()
     pic_url=StringField()
     email=StringField()
+    author_url=StringField()
    
 
 
@@ -71,3 +72,10 @@ class User(MotorDocument):
     gender=StringField()
     urlname=StringField()
     address=StringField()
+
+class Tag(MotorDocument):
+    _id=ObjectId
+    id=_id
+    name=StringField()
+    introduce=StringField()
+

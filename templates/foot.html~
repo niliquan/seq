@@ -1,0 +1,28 @@
+<footer id="footer">
+    <div class="inner">
+        <div class="left">
+            <nav id="footer-nav" class="hor-tabs">
+                <a href="http://segmentfault.com/about">关于我们</a>     
+                <i></i>
+                <a target="_blank" href="http://blog.segmentfault.com">开发日志</a>
+            </nav>
+            Copyright &copy; 2011-2012 SegmentFault. 当前呈现版本 12.12.3<br />
+            除特别说明外，用户内容均遵循 <a href="http://creativecommons.org/licenses/by-sa/2.5/cn/">CC BY-SA 2.5</a> 中国大陆许可协议许可
+        </div>
+        <div class="right">
+            <div class="follow-us">
+                <a href="http://weibo.com/segmentfault" target="_blank">
+                <img src="http://s.segmentfault.com/img/icon/auth-weibo.png" alt="新浪微博">新浪微博</a>
+                <a href="http://t.qq.com/segmentfault" target="_blank">
+                <img src="http://s.segmentfault.com/img/icon/auth-qq.png" alt="腾讯微博">腾讯微博</a>
+                <a href="http://twitter.com/segment_fault" target="_blank">
+                <img src="http://s.segmentfault.com/img/icon/auth-twitter.png" alt="Twitter">Twitter</a>
+                <a href="http://page.renren.com/699146294" target="_blank">
+                <img src="http://s.segmentfault.com/img/icon/auth-renren.png" alt="人人网">人人网</a>
+            </div>           
+        </div>
+    </div>
+    <div id="feedback">
+        <a href="#body">&#8679;回顶部</a><a href="http://0x.segmentfault.com/">反馈</a>
+    </div>
+</footer>

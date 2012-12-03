@@ -22,6 +22,7 @@ application= tornado.web.Application([
     (r"/q/(?P<detail_id>.+)/?",DetailHandler),
     (r"/t/(?P<tagname>.+)/?",TagDetailHandler),
     (r"/tags/?",TagsHandler),
+    (r"/page/(?P<page_num>.+)/?",HomeHandler),
     (r"/",HomeHandler),
 
     #admin

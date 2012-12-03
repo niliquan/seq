@@ -18,6 +18,7 @@ class Comment(MotorDocument):
     content=StringField()
     pic_url=StringField()
     email=StringField()
+    author_url=StringField()
    
 
 

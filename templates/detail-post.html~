@@ -12,15 +12,18 @@
                                <p>{{ post.content }}</p>
                        </div>
                        <div class="post-foot">
-                            <table class="post-parter">
-                                     <tbody>
-                                             <tr>
-                                                 <td ><a href="" ></a></td>
-                                                 <td class="post-author"><img src="" alt="" ></td>
-                                             </tr>
-                                     </tbody>
-                            </table>
-                       <div></div>
+                             <table class="post-parter">
+                           <tr>
+                             <td>
+                                <a href="http://segmentfault.com/u/liz" tabindex="-1">
+                                   <img class="avatar-32" src="{{ static_url("") }}{{ post.autor.pic_url }}" alt="" />
+                                </a>
+                            </td>
+                            <td class="post-author">
+                                <h4><a href="/u/{{ post.author.urlname }}">{{ post.author.name }}</a><strong>132</strong></h4>4天前提问<br />
+                            </td>
+                        </tr>
+                    </table>
                        </div>
                 <div class="clear"></div> 
            </article>
@@ -34,13 +37,13 @@
                  <i></i>
                  <a href="#" class="by-created" >时间先后</a>
          </div>
-     
+     <h2 class="a-title">{{ len(post.comments) }}</h2>
            {% for answer in post.comments %}
                                      {% include "answers.html" %}
-                               {% end %}
-                                <div class="clear"></div> 
+          {% end %}
+      <div class="clear"></div> 
    </div>
-   {% end %}
+  {% end %}
 <div id="writer-answer ">
         <h2 class="small-title">撰写答案</h2>   
         <form method="post" action="/question/answer">

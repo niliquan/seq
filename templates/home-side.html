@@ -29,8 +29,9 @@
                  <a href="http://segmentfault.com/u/asycs/awards">0 徽章</a>
             </p>
             <p></p>
-            <a class="info" href="/user/settings">您还没有上传头像, <strong>立即上传</strong></a>
-</aside>
+             {% if not  userinfo.pic_url %} 
+	            <a class="info" href="/user/settings">您还没有上传头像, <strong>立即上传</strong></a>
+	            {% end %}
 
 <aside class="box follow-tags">
        <a href="http://segmentfault.com/tags/following" class="i-more tip-pop right" data-tip="s:更多">更多</a>

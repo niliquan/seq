@@ -465,3 +465,58 @@ color: #333;
 #my-account p a, #my-account p span {
 color: #999;
 }
+#footer {
+border-top: 1px solid #DDD;
+padding: 30px 0 40px;
+color: #BBB;
+line-height: 1.6;
+}
+#feedback {
+position: fixed;
+right: 0;
+top: 50%;
+border: 1px solid #DDD;
+border-width: 1px 0 1px 1px;
+border-bottom-color: #CCC;
+background: white;
+line-height: 1.2;
+text-align: center;
+}
+#footer-nav {
+margin-bottom: 10px;
+}
+.hor-tabs i, .editor i {
+margin: 0 10px;
+border-right: 1px solid #DDD;
+height: 13px;
+}
+.hor-tabs a, .editor a, .hor-tabs i, .editor i {
+display: inline-block;
+vertical-align: middle;
+}
+#footer-nav a {
+color: #666;
+font-weight: bold;
+}
+.follow-us {
+margin-bottom: 5px;
+}
+#footer a {
+color: #BBB;
+}
+.follow-us a {
+color: #666 !important;
+}
+.follow-us img {
+margin: 0 4px 0 10px;
+width: 14px;
+height: 14px;
+vertical-align: text-top;
+}
+#footer a {
+color: #BBB;
+}
+.edge {
+margin-top: 82px;
+margin-bottom: 60px;
+}

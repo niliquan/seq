@@ -23,9 +23,13 @@ def check_last_modified(get):
     @tornado.web.asynchronous
     @gen.engine
     def _get(self,*args,**kwargs):
-        print self.get_posts.__name__
+        page_num=kwargs.get("page_num")
+        if page_num!=0 and page_num:
+            page_num=page_num.rstrip("/")
+        if not page_num:
+            page_num=0
+        kwargs.update({"page_num":page_num})
         postdocs =yield motor.Op(self.get_posts,*args,**kwargs)
-        
         self.posts=posts=[
                 Post(**doc) if doc else None
                 for doc in postdocs]
@@ -68,23 +72,23 @@ class HomeHandler(BaseHandler):
 
     def get_posts(self,callback=checkinfo,page_num=0):
         (self.db.posts.find()
-                .sort([('pub_date',-1)]).skip(int(page_num)*14)
+                .sort([('pub_date',-1)]).skip(int(page_num)*10)
             .limit(10).to_list(callback=callback))
     
     @tornado.web.addslash
     @check_last_modified
     def get(self,page_num=0):
         email=self.get_secure_cookie("email")
-       
+        self.page_num=page_num
+        print self.page_num
+        print isinstance(self.page_num,int)
         userinfo=yield motor.Op(self.db.users.find_one,{"email":email})
         if userinfo:
             userinfo=User(**userinfo)
-        if not self.posts:
-            self.write("no post")
-            self.finish()
-            return
         self.render('home.html',
-                posts=self.posts,userinfo=userinfo)
+                posts=self.posts,
+                userinfo=userinfo,
+                page_num=int(self.page_num))
   
 
 class UpdateinfoHandler(BaseHandler):
@@ -290,24 +294,33 @@ class AnswerHandler(BaseHandler):
         self.email=self.get_secure_cookie("email")
         userinfo=yield motor.Op(self.db.users.find_one,{"email":self.email})
         userinfo=User(**userinfo)
-
         content=self.get_argument("content")
         id=self.get_argument("id")
         if not content and not userinfo and not id:
             self.write("missing ")
             self.finish()
             return
+               
+        comment={"author_url":userinfo.urlname,
+                "name":userinfo.name,
+                "pic_url":userinfo.pic_url,
+                "content":content,
+                "email":userinfo.email}
 
-        comment={"name":userinfo.name,"pic_url":userinfo.pic_url,"content":content,"email":userinfo.email}
         id=self.get_argument("id")
         id=ObjectId(id)
         result=yield motor.Op(self.db.posts.update,{"_id":id},{"$addToSet":{"comments":comment}})
         self.redirect("/")
 
 class TagsHandler(BaseHandler):
- 
+    @tornado.web.asynchronous
+    @gen.engine
     def get(self):
-        self.render("tagsview.html")
+        email=self.get_secure_cookie("email")
+        userinfo=yield motor.Op(self.db.users.find_one,{"email":email})
+        if userinfo:
+            userinfo=User(**userinfo)
+        self.render("tagsview.html",userinfo=userinfo)
 
     def post(self):
         pass
@@ -317,6 +330,9 @@ class TagDetailHandler(BaseHandler):
     @tornado.web.asynchronous
     @gen.engine
     def get(self,tagname):
+        email=self.get_secure_cookie("email")
+        userinfo=yield motor.Op(self.db.users.find_one,{"email":email})
+        userinfo=User(**userinfo)
         if not tagname:
             self.write("error")
             self.finish()
@@ -339,19 +355,19 @@ class SearchHandler(BaseHandler):
 class PersonalPageHandler(BaseHandler):
 
     def get_questions(self,callback=checkinfo,page_num=0,condition={}):
-        (self.db.posts.find(condition).skip(int(page_num)*14).sort([('pub_date',-1)]).limit(10).to_list(callback))  
+        (self.db.posts.find(condition).skip(int(page_num)*14).sort([('pub_date',-1)]).limit(10).to_list(callback=callback))  
   
     @tornado.web.asynchronous
     @gen.engine
     def get(self,name):
         userinfo=yield motor.Op(self.db.users.find_one,{"urlname":name})
         userinfo=User(**userinfo)
-        print userinfo.email
         condition={"author.email":userinfo.email}
         questions = yield motor.Op(self.get_questions,condition=condition)
         self.questions=[Post(**question) for question in questions]
-        print self.questions
-        self.render("personalpage.html", userinfo=userinfo , questions=self.questions )
+        if userinfo.urlname==name:
+            show= False
+        self.render("personalpage.html", userinfo=userinfo , questions=self.questions,show=show)
 
 class AttentionHandler(BaseHandler):
 

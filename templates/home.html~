@@ -4,26 +4,29 @@
      <div class="tab-nav">
             <a href="/" class="current">问题</a>
             <a href="/tags">标签</a>
-            <!-- <a href="http://segmentfault.com/users">人物</a>
-            <a href="http://segmentfault.com/badges">徽章</a> -->
+        
             <div class="hor-tabs sub-tab">
-                                            <a class="current" href="/tags">最新的</a>
-                                                            <a href="/tags">热门的</a>
-                                                            <a href="/unanswered">未回答的</a>
-                                                            <a href="/unanswered">我标记的</a>
-                                        </div>
-       </div>  
+                  <a class="current" href="/tags">最新的</a>
+                  <a href="/tags">热门的</a>
+                  <a href="/unanswered">未回答的</a>
+                   <a href="/unanswered">我标记的</a>
+           </div>
+      </div>  
        {% if posts %}                 
                 {% for post in posts %}
                      {% include "post.html" %}
                {% end %} 
        {% end %}
-              <div class="pagenav"><a href="http://segmentfault.com/newest?page=1" class="current">1</a>
-              <a href="http://segmentfault.com/newest?page=2">2</a>
-              <a href="http://segmentfault.com/newest?page=3">3</a>
-              <a href="http://segmentfault.com/newest?page=4">4</a>
-              <a href="http://segmentfault.com/newest?page=5">5</a>
-              <span>&hellip;</span><a class="next" href="http://segmentfault.com/newest?page=2">下一页</a></div>  
+       
+              <div class="pagenav">
+                                   {%  if page_num>0 %}
+              <a class="prev" href="/page/{{ page_num-1 }}">上一页</a></div> 
+              {% end %}
+              
+              {% for i in range(page_num+1,page_num+5) %}
+                  <a href="/page/{{ i }}">{{ i }}</a>
+              {% end %}
+              <a class="next" href="/page/{{ page_num+1 }}">下一页</a></div>  
    {% end %}
 
 

@@ -1,17 +1,19 @@
  <article class="post" id="q-1010000000141416">
      <div class="status">
-        <span class="answer answered" title="4 个答案">4</span>
+        <span class="answer answered" title="4 个答案"> {{ len(question.comments) }}</span>
         <span class="vote" title="0 个赞">0</span>
      </div>
    <div class="p-summary">
-     <h2><a href="/u/{{ question.author.urlname }}" title="{{ question.title }}">{{ question.title }}</a></h2>
+     <h2><a href="/q/{{ question.id }}" title="{{ question.title }}">{{ question.title }}</a></h2>
      <div class="meta">
      <span class="views">66 次浏览</span>
+     
      <ul class="meta-tags">
-                {% for tag in question.tags %}
+         {% for tag in question.tags %}
            <li><a data-tid="1040000000089392" href="http://segmentfault.com/t/linux">{{ tag }}</a>, </li>
           {% end %} 
      </ul>
+     
     <span class="datetime">2天前</span>
     </div>
   </div>

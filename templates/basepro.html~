@@ -8,5 +8,7 @@
                         <div id="main">{% block content-main %}{% end %}</div>
                         
                         <div id="secondary">{% block content-secondary %}{% end %}</div>
+                         <div class="clear"></div> 
               </div>
+             
   {% end %}

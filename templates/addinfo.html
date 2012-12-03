@@ -4,10 +4,15 @@
         <div id="main" class="settings">
         <form action="/user/settings"  enctype="multipart/form-data"  method="post" class="session-form">
             <div class="session-aside">
+                {% if not  userinfo.pic_url %} 
                           <img class="avatar-128" src="http://s.segmentfault.com/img/user-128.png" alt="头像" />
+                          {% end %}
+                           {% if  userinfo.pic_url %} 
+                          <img class="avatar-128" src="{{ static_url("") }}{{ userinfo.pic_url }}" alt="头像" />
+                          {% end %}
                           <div class="change-avatar">
                           <input type="file" name="avatar" class="file" />
-                          <a href="#" class="btn-regular">修改头像</a>
+                          
                           </div>
                                                                     从电脑中选择图片上传, 图像大小不要超过 2 MB
             </div>

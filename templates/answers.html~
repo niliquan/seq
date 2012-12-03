@@ -7,15 +7,21 @@
     <div class="fmt post-content">
              <p>{{ answer.content }}</p>
     </div>
-    <div class="post-foot">
-              <table class="post-parter">
-                     <tbody>
-                         <tr>
-                            <td ><a href="" ></a></td>
-                            <td class="post-author"><img src="" alt="" ></td>
-                         </tr>
-                     </tbody>
-               </table>
-</table>
-    </div>
+  <div class="post-foot">
+       <table class="post-parter">
+          <tr>
+                                                    
+                <td>
+                   <a href="/u/{{ answer.author_url }}" tabindex="-1">
+                     <img class="avatar-32" src="{{ static_url("") }}{{ answer.pic_url }}"  alt="{{ answer.name }}" />
+                   </a>
+                </td>
+             <td class="post-author">
+                   <h4><a  href="/u/{{ answer.author_url }}" >{{ answer.name }}</a><strong>-8</strong></h4>1小时前回答
+              </td>
+          </tr>
+      </table>
+
+      </div>
+     <div class="clear"></div> 
 </article>

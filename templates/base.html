@@ -30,7 +30,7 @@
                             </div>
               <div id="dashboard">
                <form id="search" action="#">
-                       <input class="text-27 input-search placeholder" id="iconlist" value="c" type="text" name="q" speech="speech" x-webkit-speech="x-webkit-speech" autocomplete="off" spellcheck="false" holder="给我一个答案，我能改变世界" required="">                                   
+                       <input class="text-27 input-search placeholder" id="iconlist"  type="text" name="q" speech="speech" x-webkit-speech="x-webkit-speech" autocomplete="off" spellcheck="false" holder="给我一个答案，我能改变世界" required="">                                   
                   </form>
               </div>
                          
@@ -67,8 +67,11 @@
         
         <div class="wrap edge">
             {% block fullpage %}
-      
+      <div class="clear"></div> 
              {% end %}
+             
          </div>
+           <div class="clear"></div> 
+               {% include "foot.html" %}
   </body>
 </html>

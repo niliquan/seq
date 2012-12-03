@@ -1,6 +1,6 @@
 <article class="post" >
     <div class="status">
-      <span class="answered" title="1 个答案">1</span>
+      <span class="answered" >{{ len(post.comments) }}</span>
       <span class="vote">1 </span>
     </div>
     <div class="p-summary">
