@@ -1,59 +1,22 @@
 {% extends "basepro.html"%} 
  {% block detail-header%}
 
- <div class="detail" id="user-detail"> 
- <div class="d-card">
-            <a href="/u/{{ userinfo.urlname }}"><img class="big-avatar-img" src="{{ static_url("") }}{{ userinfo.pic_url }} " alt="{{ userinfo.name }}" /></a>
-            <h1>     {{ userinfo.name }}         </h1>
-            <span class="quick-action hidden"></span>
-            <div class="excerpt">
-                <div><p>{{ userinfo.description }}</p></div>
-                <p class="ext-ref">  <span>{{ userinfo.address }}</span> &bull;
-                                   <span>8月29日加入</span>
-                </p>
-
-                <p class="bind-icon">  </p>
-            </div>  
- </div>
-<div class="d-action">
-            <ul class="user-rep">
-                <li><strong>214</strong> 声望值</li>
-                <li><strong class="up-color">14</strong> 次被赞，<strong class="down-color">0</strong> 次被踩</li>
-            </ul>
-           {% if show %}
-           
-            <a href="#" data-uid="1030000000114935" class="btn-medium follow">加关注</a>
-            {% end %}
- </div>
- 
-<div class="clear"></div> 
-
-</div>
-{% end%}
+ {% module User(userinfo,show) %}
+ {% end%}
 
 
 
 {% block content-main %}
         <div class="subhead">
             <h1 class="subtitle">3 个回答</h1>
-            <span class="right"><a href="http://segmentfault.com/u/pingouin/answers">全部回答 &rarr;</a></span>
+            <span class="right"><a href="/u/pingouin/answers">全部回答 &rarr;</a></span>
             <div class="clear"></div> 
         </div><!-- end .subhead -->
         
          <div id="user-answer">
-
-          <article class="post" id="a-1020000000136054">
-          <div class="post-big-vote">
-                    <span>0</span>赞
-          </div>
-          <div class="p-summary">
-                    <h2><a href="http://segmentfault.com/q/1010000000126778#a-1020000000136054" title="shell 脚本 如何统计各个用户目录下的文件总大小?">shell 脚本 如何统计各个用户目录下的文件总大小?</a></h2>
-                    <div class="p-excerpt">
-                        <p>这个没办法，用户的家目录权限都是700的，就是为了避免用户之间的互相访问，是用来存放隐私数据的。 如果你是系统管理员，可以这样做 建立一个管理员group admin_group，需要管理操作的人都加入这个组，然后用setfacl给所有的普通用户家目录授权，给管理员group一个r权限 {代码...} 这样就可以用 du 和 sort操作                        <a href="http://segmentfault.com/q/1010000000126778#a-1020000000136054" class="readmore">阅读全部</a></p>
-                    </div>
-                </div>
-            </article>
- 
+          {% for answer in answers %}
+          {% include "useranswer.html" %}
+          {%  end %}
         </div>
         
         <div class="subhead">
@@ -77,10 +40,14 @@
 
 
 {% block content-secondary %}
-               <aside class="box">
-            <a href="http://segmentfault.com/u/pingouin/followers" class="i-more tip-pop right" data-tip="s:更多">更多</a>
-            <h3><a href="http://segmentfault.com/u/pingouin/followers">1</a> 位关注者</h3>
-                        <a class="tip-pop" href="http://segmentfault.com/u/segmentfault" title="SegmentFault" data-tip="n:SegmentFault"><img class="avatar-24" src="http://sfault-avatar.b0.upaiyun.com/569/558/569558099-1030000000094051_tiny24" alt="SegmentFault" /></a>
-                    </aside>
-
+        <aside class="box">
+            <a href="/followers" class="i-more tip-pop right" data-tip="s:更多">更多</a>
+            <h3><a href="http://segmentfault.com/u/%E4%B8%BA%E7%88%B1%E8%A3%B8%E5%A5%94/followers">{{  len(userinfo.followed) }}</a>
+                                位关注者</h3>
+                                {% for follower in userinfo.followed %}
+                    <a class="tip-pop" href="/u/{{ follower.urlname }}" title="{{ follower.name }}" >
+                       <img class="avatar-24" src="{{ static_url("") }}{{ follower.pic_url }}" alt="{{ follower.name }}" />
+                   </a>
+                {% end %}
+          </aside>    
 {% end %}

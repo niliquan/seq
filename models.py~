@@ -72,6 +72,8 @@ class User(MotorDocument):
     gender=StringField()
     urlname=StringField()
     address=StringField()
+    follow=SortedListField(EmbeddedDocumentField(EmbeddedAuthor))
+    followed=SortedListField(EmbeddedDocumentField(EmbeddedAuthor))
 
 class Tag(MotorDocument):
     _id=ObjectId

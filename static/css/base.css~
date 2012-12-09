@@ -374,7 +374,7 @@ display: block;
 }
 #my-account h3 {
 font-size: 18px;
-margin: 0;
+
 }
 #my-account .my-avatar {
 position: relative;
@@ -429,6 +429,7 @@ list-style-type: none;
 margin: 0;
 padding: 0;
 }
+
 .timestream {
 word-wrap: break-word;
 }
@@ -513,6 +514,25 @@ width: 14px;
 height: 14px;
 vertical-align: text-top;
 }
-#footer a {
-color: #BBB;
+
+.edge {
+margin-top: 82px;
+margin-bottom: 60px;
+}
+#footer-nav a {
+color: #666;
+font-weight: bold;
+}
+.box h3 {
+margin: 0 0 20px;
+font-size: 14px;
+}
+.avatar-24 {
+width: 24px;
+height: 24px;
+padding: 1px;
+}
+.avatar, .avatar-24, .avatar-32, .avatar-40, .avatar-64, .avatar-128 {
+border: 1px solid #DDD;
+background: white;
 }

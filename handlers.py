@@ -335,10 +335,11 @@ class TagDetailHandler(BaseHandler):
             self.write("error")
             self.finish()
             return
-        taginfo=yield motor.Op(self.db.tags.find,{"name":tagname})
+        taginfo=yield motor.Op(self.db.tags.find_one,{"name":tagname})
         if not taginfo:
-            self
-        self.render("tag.html")
+            self.redirect("/")
+        taginfo=Tag(**taginfo)
+        self.render("tag.html",taginfo=taginfo)
     
     def post(self):
         pass
@@ -352,7 +353,7 @@ class SearchHandler(BaseHandler):
 
 class PersonalPageHandler(BaseHandler):
 
-    def get_questions(self,callback=checkinfo,page_num=0,condition={}):
+    def get_posts(self,callback=checkinfo,page_num=0,condition={}):
         (self.db.posts.find(condition).skip(int(page_num)*14).sort([('pub_date',-1)]).limit(10).to_list(callback=callback))  
   
     @tornado.web.asynchronous
@@ -361,11 +362,24 @@ class PersonalPageHandler(BaseHandler):
         userinfo=yield motor.Op(self.db.users.find_one,{"urlname":name})
         userinfo=User(**userinfo)
         condition={"author.email":userinfo.email}
-        questions = yield motor.Op(self.get_questions,condition=condition)
+        questions = yield motor.Op(self.get_posts,condition=condition)
         self.questions=[Post(**question) for question in questions]
-        if userinfo.urlname==name:
+        show=True
+        email=self.get_secure_cookie("email")
+        admin=yield motor.Op(self.db.users.find_one,{"email":email})
+        admin=User(**admin)
+        if admin.urlname==name or not admin:
             show= False
-        self.render("personalpage.html", userinfo=userinfo , questions=self.questions,show=show)
+        following={}
+        following.update({"urlname":userinfo.urlname,"name":f.name,"pic_url":followinfo.pic_url})
+        if admin.follow
+        condition1={"comments.author_url":userinfo.urlname}
+        answers = yield motor.Op(self.get_posts,condition=condition1)
+        answers =[Post(**answer) for answer in answers]
+        self.render("personalpage.html",
+                userinfo=userinfo,
+                questions=self.questions,
+                show=show,answers=answers)
 
 class AttentionHandler(BaseHandler):
 
@@ -384,6 +398,46 @@ class AttentionHandler(BaseHandler):
         id=userinfo[_id]
         result=yield motor.Op(self.db.users.update,{"_id":id},{"$addToSet":{"tags":{"name":tagname}}})
 
+class UserInfoModule(tornado.web.UIModule):
+    def render(self,userinfo,show):
+        return self.render_string("module/userinfo.html",userinfo=userinfo,show=show)
+    
+    def javascript_files(self):
+        return "js/attention.js"
 
+
+class PersonFollowHandler(BaseHandler):
+    @tornado.web.asynchronous
+    @gen.engine
+    def get(self):
+
+        #关注者的信息
+        self.email=self.get_secure_cookie("email");
+        if not self.email:
+            self.redirct("/")
+        userinfo=yield motor.Op(self.db.users.find_one,{"email":self.email})
+        if not userinfo:
+            self.redirect("/")
+        userinfo=User(**userinfo)
+
+
+        #被关注者的信息
+        followerEmail=self.get_argument("followemail")
+        followinfo=yield motor.Op(self.db.users.find_one,{"email":followerEmail})
+        if not followinfo:
+            self.redirect("/")
+        followinfo=User(**followinfo)
+#关注者插入一条关注他人的信息
+        following={}
+        following.update({"urlname":followinfo.urlname,"name":followinfo.name,"pic_url":followinfo.pic_url})
+        result=yield motor.Op(self.db.users.update,{"_id":userinfo.id},{"$addToSet":{"follow":following}})
+#被关注者插入一条被观者的信息
+        followed={}
+        followed.update({"urlname":userinfo.urlname,"name":userinfo.name,"pic_url":userinfo.pic_url})
+        result1=yield motor.Op(self.db.users.update,
+                {"_id":followinfo.id},
+                {"$addToSet":{"followed":followed}})
+        self.finish()
+       
      
             

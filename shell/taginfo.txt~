@@ -1,0 +1,4 @@
+db.tags.insert({"name": "ios",
+                "introduce" : " iOS 是苹果公司为其移动产品开发的操作系统。它主要给 iPhone、iPod touch、iPad 以及 Apple TV 使用。原本这个系统名为 iPhone OS，直到2010年6月7日 WWDC 大会上宣布改名为 iOS。",
+                 "pic_url":"pic/tags/2941880015-1040000000089442_huge100.png",
+               })

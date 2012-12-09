@@ -18,7 +18,7 @@ background: white;
 .q-title, .a-title {
 margin: 0 0 30px;
 padding: 0 0 14px;
-border-bottom: 1px solid #BBB;
+
 font-size: 20px;
 -webkit-box-shadow: inset 0 -2px 0 #EEE;
 -moz-box-shadow: inset 0 -2px 0 #eee;
@@ -391,6 +391,8 @@ margin: 24px 0;
 .textarea-14 {
 font-size: 14px;
 }
-color: #333;
+.a-post {
+border-top: 1px solid #BBB;
+margin-top: -1px;
+padding: 30px 0;
 }
-button, input {

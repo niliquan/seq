@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
 {% block fullpage %}
-  
               <div class="inner edge ">
-               {% block detail-header %}
-               {%  end %}
-                        <div id="main">{% block content-main %}{% end %}</div>
-                        
-                        <div id="secondary">{% block content-secondary %}{% end %}</div>
-                         <div class="clear"></div> 
+                 {% block detail-header %}
+                  {%  end %}
+                        <div id="main">{% block content-main %}
+                        {% end %}</div>                       
+                        <div id="secondary">{% block content-secondary %}
+                        {% end %}</div>
+                    
               </div>
-             
+                  <div class="clear"></div> 
   {% end %}

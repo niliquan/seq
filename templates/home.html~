@@ -1,37 +1,37 @@
 {% extends "basepro.html" %}
- 
+
+
 {% block content-main %}
      <div class="tab-nav">
             <a href="/" class="current">问题</a>
             <a href="/tags">标签</a>
-        
             <div class="hor-tabs sub-tab">
                   <a class="current" href="/tags">最新的</a>
                   <a href="/tags">热门的</a>
                   <a href="/unanswered">未回答的</a>
                    <a href="/unanswered">我标记的</a>
-           </div>
-      </div>  
+            </div>
+     </div>  
        {% if posts %}                 
                 {% for post in posts %}
                      {% include "post.html" %}
-               {% end %} 
+                 {% end %} 
        {% end %}
        
               <div class="pagenav">
-                                   {%  if page_num>0 %}
-              <a class="prev" href="/page/{{ page_num-1 }}">上一页</a></div> 
-              {% end %}
+                  {%  if page_num>0 %}
+              <a class="prev" href="/page/{{ page_num-1 }}">上一页</a>
+                   {% end %}
               
               {% for i in range(page_num+1,page_num+5) %}
                   <a href="/page/{{ i }}">{{ i }}</a>
               {% end %}
-              <a class="next" href="/page/{{ page_num+1 }}">下一页</a></div>  
-   {% end %}
+              <a class="next" href="/page/{{ page_num+1 }}">下一页</a></div>
+        
+{% end %}
 
 
 
 {% block content-secondary %}
-                       {% include "home-side.html"%}
-                       
+                       {% include "home-side.html"%}                      
 {% end %}

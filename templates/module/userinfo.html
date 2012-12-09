@@ -1,0 +1,28 @@
+ <div class="detail" id="user-detail"> 
+ <div class="d-card">
+            <a href="/u/{{ userinfo.urlname }}"><img class="big-avatar-img" src="{{ static_url("") }}{{ userinfo.pic_url }} " alt="{{ userinfo.name }}" /></a>
+            <h1>     {{ userinfo.name }}         </h1>
+            <span class="quick-action hidden"></span>
+            <div class="excerpt">
+                <div><p>{{ userinfo.description }}</p></div>
+                <p class="ext-ref">  <span>{{ userinfo.address }}</span> &bull;
+                                   <span>8月29日加入</span>
+                </p>
+                <p class="bind-icon">  </p>
+            </div>  
+ </div>
+<div class="d-action">
+            <ul class="user-rep">
+                <li><strong>214</strong> 声望值</li>
+                <li><strong class="up-color">14</strong> 次被赞，<strong class="down-color">0</strong> 次被踩</li>
+            </ul>
+           {% if show %}
+              <a id="followme" href="#" data-uid={{ userinfo.email }} class="btn-medium follow">加关注</a>
+              
+              <a  id="unfollowme" class="btn-medium follow" style="display:none" >取消关注</a>
+           {% end %}
+ </div>
+ 
+<div class="clear"></div> 
+
+</div>

@@ -16,7 +16,7 @@
                            <tr>
                              <td>
                                 <a href="http://segmentfault.com/u/liz" tabindex="-1">
-                                   <img class="avatar-32" src="{{ static_url("") }}{{ post.autor.pic_url }}" alt="" />
+                                   <img class="avatar-32" src="{{ static_url("") }}{{ post.author.pic_url }}" alt="" />
                                 </a>
                             </td>
                             <td class="post-author">
@@ -37,7 +37,7 @@
                  <i></i>
                  <a href="#" class="by-created" >时间先后</a>
          </div>
-     <h2 class="a-title">{{ len(post.comments) }}</h2>
+     <h2 class="a-title">{{ len(post.comments) }}个回答 </h2>
            {% for answer in post.comments %}
                                      {% include "answers.html" %}
           {% end %}
