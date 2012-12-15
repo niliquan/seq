@@ -15,7 +15,7 @@
                              <table class="post-parter">
                            <tr>
                              <td>
-                                <a href="http://segmentfault.com/u/liz" tabindex="-1">
+                                <a href="/u/{{ post.author.urlname }}" tabindex="-1">
                                    <img class="avatar-32" src="{{ static_url("") }}{{ post.author.pic_url }}" alt="" />
                                 </a>
                             </td>

@@ -47,7 +47,15 @@
          </li>
        </ul>
 </aside>
-                                
+      <aside class="box">
+            <a href="http://segmentfault.com/users/following" class="i-more tip-pop right" data-tip="s:更多">更多</a>
+            <h3>关注 <a href="/users/following">{{ len(userinfo.follow) }}</a> 人</h3>
+            {% for fo in userinfo.follow %}
+               <a class="tip-pop" href="/u/{{ fo.urlname }}" data-tip="">
+                   <img class="avatar-24" src="{{ static_url("") }}{{ fo.pic_url }}" alt="{{ fo.name }}" />
+               </a>
+           {% end %}
+       </aside>        
         
 <aside class="box">
         <a href="/user/timeline" class="tip-pop i-more right" data-tip="s:更多">更多</a>

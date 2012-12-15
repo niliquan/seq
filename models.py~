@@ -80,4 +80,5 @@ class Tag(MotorDocument):
     id=_id
     name=StringField()
     introduce=StringField()
+    followemails=SortedListField(EmbeddedDocumentField(EmbeddedAuthor))
 

@@ -1,0 +1,29 @@
+
+  <aside class="box">
+            <div class="d-action">
+              {% if  current_user  %}
+                 {% if not al %}
+                     <a href="###" id="followtag" data-uid={{ taginfo.name }} class="btn-medium follow">加关注</a>       
+                 {% end %}
+                  {% if al%}
+                   <a href="###" id="unfollowtag" data-uid={{ taginfo.name }} class="btn-medium follow">取消关注</a>
+                                 {% end %}
+                {% end %}
+            </div>
+            <hr class="space" />
+            <h3>
+                <a href="http://segmentfault.com/t/phonegap/followers">9</a> 人关注了该标签
+            </h3>
+                  <a class="tip-pop" href="http://segmentfault.com/u/%E5%B4%87%E6%85%95" title="崇慕" data-tip="n:崇慕">
+                      <img class="avatar-24" src="http://sfault-avatar.b0.upaiyun.com/518/543/518543523-1030000000139122_tiny24" alt="崇慕" />
+                    </a>                 
+                    
+   </aside>
+   <aside class="box">
+            <h3>30 天贡献排名</h3>
+            <ol class="ranking-list">
+                <li><a href="http://segmentfault.com/u/tina">
+                <img class="avatar-24" src="http://s.segmentfault.com/img/user-24.png" alt="">Tina</a>
+                <span>1 声望</span></li>
+              </ol>
+  </aside>

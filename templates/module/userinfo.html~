@@ -17,8 +17,12 @@
                 <li><strong class="up-color">14</strong> 次被赞，<strong class="down-color">0</strong> 次被踩</li>
             </ul>
            {% if show %}
+           {% if not al %}
               <a id="followme" href="#" data-uid={{ userinfo.email }} class="btn-medium follow">加关注</a>
-              <a  id="unfollowme" class="btn-medium follow" style="display:none" >取消关注</a>
+              {% end %}
+              {% if al %}
+                 <a  id="unfollowme" href="#" data-uid={{ userinfo.email }} class="btn-medium follow"  >取消关注</a>
+              {% end %}
            {% end %}
  </div>
  

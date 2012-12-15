@@ -89,38 +89,5 @@
  
  
  {% block content-secondary %}
- 
-  <aside class="box">
-            <div class="d-action">
-              {% if  current_user  %}
-                <a href="###" data-tid=" " class="btn-medium follow">加关注</a>             
-                {% end %}
-            </div>
-            <hr class="space" />
-            <h3><a href="http://segmentfault.com/t/phonegap/followers">9</a> 人关注了该标签</h3>
-                        <a class="tip-pop" href="http://segmentfault.com/u/%E5%B4%87%E6%85%95" title="崇慕" data-tip="n:崇慕">
-                              <img class="avatar-24" src="http://sfault-avatar.b0.upaiyun.com/518/543/518543523-1030000000139122_tiny24" alt="崇慕" />
-                              </a>
-                        <a class="tip-pop" href="/u/%E5%A4%A7%E9%A9%B4" title="大驴" >
-                        <img class="avatar-24" src="img/user-24.png" alt="大驴" /></a>
-                        <a class="tip-pop" href="/u/%E5%BC%A0%E9%B8%BF%E4%BC%9Fcharles" >
-                        <img class="avatar-24" src="/153441030-1030000000139364_tiny24" alt="张鸿伟Charles" /></a>
-                        <a class="tip-pop" href="/u/%E5%A4%A9%E8%93%9D" title="天蓝" data-tip="n:天蓝">
-                        <img class="avatar-24" src="/4140052591-1030000000138490_tiny24" alt="天蓝" /></a>
-                        <a class="tip-pop" href="u/biaobiaoqi" title="biaobiaoqi" data-tip="n:biaobiaoqi">
-                        <img class="avatar-24" src="/3884006597-1030000000128433_tiny24" alt="biaobiaoqi" /></a>
-                        <a class="tip-pop" href="/u/cheney-jin" title="cheney jin" data-tip="n:cheney jin">
-                        <img class="avatar-24" src="/211727702-1030000000135527_tiny24" alt="cheney jin" /></a>
-                        <a class="tip-pop" href="/u/zhangyiwu" title="zhangyiwu" data-tip="n:zhangyiwu">
-                        <img class="avatar-24" src="/2824774221-1030000000132288_tiny24" alt="zhangyiwu" />
-                    </a>
-   </aside>
-   <aside class="box">
-            <h3>30 天贡献排名</h3>
-            <ol class="ranking-list">
-                <li><a href="http://segmentfault.com/u/tina">
-                <img class="avatar-24" src="http://s.segmentfault.com/img/user-24.png" alt="">Tina</a>
-                <span>1 声望</span></li>
-              </ol>
-  </aside>
-         {% end %}
+        {% module TagSide(taginfo,al) %}
+ {% end %}

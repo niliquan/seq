@@ -1,7 +1,7 @@
 {% extends "basepro.html"%} 
  {% block detail-header%}
 
- {% module User(userinfo,show) %}
+ {% module User(userinfo,show,al) %}
  {% end%}
 
 
@@ -15,7 +15,7 @@
         
          <div id="user-answer">
           {% for answer in answers %}
-          {% include "useranswer.html" %}
+           {% include "useranswer.html" %}
           {%  end %}
         </div>
         
@@ -44,7 +44,7 @@
             <a href="/followers" class="i-more tip-pop right" data-tip="s:更多">更多</a>
             <h3><a href="http://segmentfault.com/u/%E4%B8%BA%E7%88%B1%E8%A3%B8%E5%A5%94/followers">{{  len(userinfo.followed) }}</a>
                                 位关注者</h3>
-                                {% for follower in userinfo.followed %}
+              {% for follower in userinfo.followed %}
                     <a class="tip-pop" href="/u/{{ follower.urlname }}" title="{{ follower.name }}" >
                        <img class="avatar-24" src="{{ static_url("") }}{{ follower.pic_url }}" alt="{{ follower.name }}" />
                    </a>

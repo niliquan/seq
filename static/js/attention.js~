@@ -1,10 +1,30 @@
  $(document).ready(function(){	 
-   $("#followme").click(function(){
-                    var uid=$("#followme").attr("data-uid");
-                    alert(uid);
-                           $.ajax({url:"/personfollow",async:false,data:{followemail:uid}});                     
-                           $("#unfollowme").attr("display","block"); 
-                           $("#followme").attr("display","none"); 
-                                                                                                                                                 });                                                                                                                                                                                                                            
+
+   $("#followme").click(function(){                              
+                           $.ajax({url:"/personfollow",async:false,data:{followemail:$("#followme").attr("data-uid")}});                     
+                           $("#unfollowme").css("display","block"); 
+                           $("#followme").css("display","none"); 
+                                                                                                                                                 });   
+                                                                                                                      
+   $("#unfollowme").click(function(){
+                           $.ajax({url:"/personunfollow",async:false,data:{followemail:$("#unfollowme").attr("data-uid")}});                     
+                           $("#followme").css("display","block"); 
+                           $("#unfollowme").css("display","none"); 
+ 
+                                                                                                                                               });        
+   
+   $("#followtag").click(function(){
+                           $.ajax({url:"/tagattention",async:false,data:{tagname:$("#followtag").attr("data-uid")}});                     
+                           $("#unfollowtag").css("display","block"); 
+                           $("#followtag").css("display","none");  
+                                                                                                                                                        });        
+                                                                                                                                                        
+                                                                                                                                                        
+   $("#unfollowtag").click(function(){
+                           $.ajax({url:"/unfollowtag",async:false,data:{tagname:$("#unfollowtag").attr("data-uid")}});                     
+                           $("#followtag").css("display","block"); 
+                           $("#unfollowtag").css("display","none");  
+                                                                                                                                                 });                                                                                                                                                                                                                                                                                                                                                                                                       
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
                                                          } );
                             
