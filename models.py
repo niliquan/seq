@@ -13,18 +13,6 @@ class MotorDocument(Document):
     class Meta:
         id_field=ObjectIdField
 
-class Comment(MotorDocument):
-    name=StringField()
-    content=StringField()
-    pic_url=StringField()
-    email=StringField()
-    author_url=StringField()
-   
-
-
-class EmbeddedComment(Comment,EmbeddedDocument):
-    pass
-
 class Author(MotorDocument):
     urlname=StringField()
     name=StringField()
@@ -34,21 +22,34 @@ class Author(MotorDocument):
 class EmbeddedAuthor(Author,EmbeddedDocument):
     pass
 
+class Comment(MotorDocument):
+    content=StringField()
+    email=StringField()
+    author=EmbeddedDocumentField(EmbeddedAuthor)
+    
+   
+
+
+class EmbeddedComment(Comment,EmbeddedDocument):
+    pass
+
+
+
 
 class Post(MotorDocument):
     'a page '
-
     _id=ObjectIdField()
     id=_id
     title = StringField(default='')
     content = StringField(default='')
     author=EmbeddedDocumentField(EmbeddedAuthor)
     pub_date=DateTimeField()
-    tags= SortedListField(StringField())
+    tags=  SortedListField(StringField())
     vote=IntField()
     comments=SortedListField(EmbeddedDocumentField(EmbeddedComment))
     viewnum=IntField()
     formattime=StringField()
+    authoremail=StringField()
 
 class TagDocument(Document):
     name=StringField()
@@ -63,7 +64,7 @@ class User(MotorDocument):
     id=_id
     name=StringField()
     email=StringField()
-    tags=SortedListField(EmbeddedDocumentField(EmbeddedTag))
+    tags=SortedListField(StringField())
     birthday=StringField()
     description=StringField()
     selfsite=StringField()
@@ -74,11 +75,14 @@ class User(MotorDocument):
     address=StringField()
     follow=SortedListField(EmbeddedDocumentField(EmbeddedAuthor))
     followed=SortedListField(EmbeddedDocumentField(EmbeddedAuthor))
+    followemails=SortedListField(StringField())
+    followedemails=SortedListField(StringField())
 
 class Tag(MotorDocument):
     _id=ObjectId
     id=_id
     name=StringField()
     introduce=StringField()
-    followemails=SortedListField(EmbeddedDocumentField(EmbeddedAuthor))
+    followemails=SortedListField(StringField())
+    pic_url=StringField()
 

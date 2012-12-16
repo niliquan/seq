@@ -10,8 +10,8 @@
      </aside>     
 {% end %}
 
- {% if  userinfo %} 
- <aside id="my-account" class="clearfix">
+{% if  userinfo %} 
+       <aside id="my-account" class="clearfix">
              
             {% if  userinfo.pic_url %} 
                      <div class="my-avatar avatar-64" style="background: url({{ static_url("") }}{{ userinfo.pic_url }}) no-repeat center center">
@@ -29,32 +29,28 @@
 	            <a class="info" href="/user/settings">您还没有上传头像, <strong>立即上传</strong></a>
 	            {% end %}
 
-<aside class="box follow-tags">
+      <aside class="box follow-tags">
        <a href="/following" class="i-more tip-pop right" data-tip="s:更多">更多</a>
-       <h3>关注 <a href="/tags/following">4</a> 个标签</h3>
-       <ul class="tag-ranking-list show-pop-tag">
-         <li>
-          <a  href="/t/mongodb" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/185/215/185215561-i-1040000000089488_icon);">mongodb</a>
-         </li>
-         <li>
-          <a  href="/t/vim" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/668/701/668701366-i-1040000000089467_icon);">vim</a>
-         </li>
-         <li>
-         <a  href="/t/python" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/338/144/3381442710-i-1040000000089534_icon);">python</a>
-         </li>
-          <li>
-             <a  href="/t/css3" class="tag tag-img" style="background-image: url(http://sfault-avatar.b0.upaiyun.com/101/156/1011561524-i-1040000000090141_icon);">css3</a>
-         </li>
+       <h3>关注 <a href="/tags/following">{{ len(tags) }}</a> 个标签</h3>
+      <ul class="tag-ranking-list show-pop-tag">
+              {% for tag in tags %}
+                   <li>
+                    <a  href="/t/{{ tag.name }}" class="tag tag-img" style="background-image: url({{ static_url("") }}{{ tag.pic_url }});">{{ tag.name }}</a>
+                   </li> 
+              {% end %}  
+            
        </ul>
+     
 </aside>
+
       <aside class="box">
             <a href="http://segmentfault.com/users/following" class="i-more tip-pop right" data-tip="s:更多">更多</a>
             <h3>关注 <a href="/users/following">{{ len(userinfo.follow) }}</a> 人</h3>
-            {% for fo in userinfo.follow %}
+           {% for fo in userinfo.follow %}
                <a class="tip-pop" href="/u/{{ fo.urlname }}" data-tip="">
                    <img class="avatar-24" src="{{ static_url("") }}{{ fo.pic_url }}" alt="{{ fo.name }}" />
                </a>
-           {% end %}
+            {% end %}
        </aside>        
         
 <aside class="box">

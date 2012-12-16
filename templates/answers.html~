@@ -12,12 +12,12 @@
           <tr>
                                                     
                 <td>
-                   <a href="/u/{{ answer.author_url }}" tabindex="-1">
-                     <img class="avatar-32" src="{{ static_url("") }}{{ answer.pic_url }}"  alt="{{ answer.name }}" />
+                   <a href="/u/{{ answer.author.urlname }}" tabindex="-1">
+                     <img class="avatar-32" src="{{ static_url("") }}{{ answer.author.pic_url }}"  alt="{{ answer.author.name }}" />
                    </a>
                 </td>
              <td class="post-author">
-                   <h4><a  href="/u/{{ answer.author_url }}" >{{ answer.name }}</a><strong>-8</strong></h4>1小时前回答
+                   <h4><a  href="/u/{{ answer.author.urlname  }}" >{{ answer.author.name }}</a><strong>-8</strong></h4>1小时前回答
               </td>
           </tr>
       </table>

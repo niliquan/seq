@@ -6,7 +6,7 @@
             <div class="session-aside">
                 {% if not  userinfo.pic_url %} 
                           <img class="avatar-128" src="http://s.segmentfault.com/img/user-128.png" alt="头像" />
-                          {% end %}
+                {% end %}
                            {% if  userinfo.pic_url %} 
                           <img class="avatar-128" src="{{ static_url("") }}{{ userinfo.pic_url }}" alt="头像" />
                           {% end %}

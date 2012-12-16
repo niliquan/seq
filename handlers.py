@@ -18,25 +18,6 @@ def checkinfo(result,error):
     else:
         print"OK"
 
-def check_last_modified(get):
-    @functools.wraps(get)
-    @tornado.web.asynchronous
-    @gen.engine
-    def _get(self,*args,**kwargs):
-        page_num=kwargs.get("page_num")
-        if page_num!=0 and page_num:
-            page_num=page_num.rstrip("/")
-        if not page_num:
-            page_num=0
-        kwargs.update({"page_num":page_num})
-        postdocs =yield motor.Op(self.get_posts,*args,**kwargs)
-        self.posts=posts=[
-                Post(**doc) if doc else None
-                for doc in postdocs]
-        gen.engine(get)(self,*args,**kwargs)
-    return _get
-
-
 class BaseHandler(tornado.web.RequestHandler):
     def get_current_user(self):
         return self.get_secure_cookie("name")
@@ -54,7 +35,11 @@ class BaseHandler(tornado.web.RequestHandler):
 
 
 class DetailHandler(BaseHandler):
+    def  get_authors(self,callback=checkinfo,condition={},condition2={}):
+        (self.db.users.find(condition,condition2).to_list(callback=callback))
   
+
+
     @tornado.web.addslash
     @tornado.web.asynchronous
     @gen.engine
@@ -65,6 +50,17 @@ class DetailHandler(BaseHandler):
         if not postdoc:
             raise tornado.web.HTTPError(404)
         postdoc=Post(**postdoc)
+        author=yield motor.Op(self.db.users.find_one,{"email":postdoc.authoremail})
+        postdoc.author=author
+        emails=[ comment.email if comment else None for comment in postdoc.comments]
+        answers=yield motor.Op(self.get_authors,
+            condition={"email":{"$in":emails}},
+            condition2={"name":1,"pic_url":1,"urlname":1,"email":1})
+        for comment in postdoc.comments:
+            for answer  in answers:
+                if comment.email == answer["email"]:
+                    comment.author=answer
+
         self.render("detail.html",post=postdoc)
 
 
@@ -74,20 +70,66 @@ class HomeHandler(BaseHandler):
         (self.db.posts.find()
                 .sort([('pub_date',-1)]).skip(int(page_num)*10)
             .limit(10).to_list(callback=callback))
-    
-    @tornado.web.addslash
-    @check_last_modified
+
+    def get_tags(self,callback=checkinfo,condition={}):
+        (self.db.tags.find(condition)
+                .to_list(callback=callback))
+
+    def get_authors(self,callback=checkinfo,condition={},condition2={}):
+        (self.db.users.find(condition,condition2)
+                .to_list(callback=callback))
+
+    @tornado.web.asynchronous
+    @gen.engine
     def get(self,page_num=0):
         email=self.get_secure_cookie("email")
         self.page_num=page_num
+        if self.page_num!=0 and self.page_num:
+            self.page_num.rstrip("/")
         userinfo=yield motor.Op(self.db.users.find_one,{"email":email})
         if userinfo:
             userinfo=User(**userinfo)
+
+        posts=yield motor.Op(self.get_posts,page_num=self.page_num)
+        if posts:
+            self.posts=[Post(**post) if post else None for post in posts ]
+            emails= [ post.authoremail for post in self.posts]
+            authors=yield motor.Op(self.get_authors,
+                    condition={"email":{"$in":emails}},
+                    condition2={"name":1,"urlname":1,"pic_url":1,"email":1})
+           # authors=[ Author(**author) if author else None for author in authors]
+
+        self.postdocs=[]
+        if posts:
+            for post in self.posts:
+                for author in authors:
+                    if post.authoremail==author["email"]:
+                        post.author=author
+                        self.postdocs.append(post)
+        self.tags=[]
+        if userinfo:
+            self.tags=yield motor.Op(self.get_tags,condition={"name":{"$in":userinfo.tags}})
+        if self.tags:
+            self.tags=[ Tag(**tag) if tag else None for tag in self.tags]
+        if userinfo:
+            followers=yield motor.Op(self.get_authors,
+                    condition={"email":{"$in":userinfo.followemails}},
+                    condition2={"name":1,"urlname":1,"pic_url":1,"email":1})
+            userinfo.follow=followers
+
         self.render('home.html',
-                posts=self.posts,
+                posts=self.postdocs,
                 userinfo=userinfo,
+                tags=self.tags,
                 page_num=int(self.page_num))
-  
+
+
+class HomeModule(tornado.web.UIModule):
+
+    def render(self,userinfo,tags):
+        return self.render_string("module/home-side.html",userinfo=userinfo,tags=tags)
+
+
 
 class UpdateinfoHandler(BaseHandler):
 
@@ -152,10 +194,10 @@ class UpdateinfoHandler(BaseHandler):
         self.finish()
 
 
-class TestHandler(BaseHandler):
+class AddTagHandler(BaseHandler):
 
     def get(self):
-        self.render("test.html")
+        self.render("addtag.html")
     
     def post(self):
         print "in method"
@@ -163,9 +205,6 @@ class TestHandler(BaseHandler):
         print name
         self.write(name)
         return
-
-
-
 
 class LoginHandler(BaseHandler):
 
@@ -243,7 +282,7 @@ class RegisterHandler(BaseHandler):
         self.redirect("/")
         self.finish()
         
-class  AskHandler(BaseHandler):
+class AskHandler(BaseHandler):
     @tornado.web.authenticated
     def get(self):
         self.render("ask.html")
@@ -265,15 +304,12 @@ class  AskHandler(BaseHandler):
         posttime=time.time()
         formattime=time.strftime("%Y-%m-%d",time.localtime(posttime))
         post={}
-        post.update({"author":{"name":userinfo.name,
-            "urlname":userinfo.urlname,
-            "email":userinfo.email,
-            "pic_url":userinfo.pic_url}})
         post.update({"title":self.title,
             "content":self.content,
             "tags":self.tags,
             "pub_date":posttime,
             "formattime":formattime,
+            "authoremail":self.email,
             })
         post_id=yield motor.Op(self.db.posts.insert,post)
         self.redirect("/")
@@ -299,18 +335,22 @@ class AnswerHandler(BaseHandler):
             self.finish()
             return
                
-        comment={"author_url":userinfo.urlname,
-                "name":userinfo.name,
-                "pic_url":userinfo.pic_url,
+        comment={
                 "content":content,
                 "email":userinfo.email}
 
         id=self.get_argument("id")
         id=ObjectId(id)
-        result=yield motor.Op(self.db.posts.update,{"_id":id},{"$addToSet":{"comments":comment}})
+        result=yield motor.Op(self.db.posts.update,
+                {"_id":id},
+                {"$addToSet":{"comments":comment}})
         self.redirect("/")
 
 class TagsHandler(BaseHandler):
+    def get_tags(self,condition={},callback=checkinfo):
+        (self.db.tags.find(condition).to_list(callback=callback))
+
+
     @tornado.web.asynchronous
     @gen.engine
     def get(self):
@@ -318,12 +358,19 @@ class TagsHandler(BaseHandler):
         userinfo=yield motor.Op(self.db.users.find_one,{"email":email})
         if userinfo:
             userinfo=User(**userinfo)
-        self.render("tagsview.html",userinfo=userinfo)
+        self.tags=[]
+        self.tags=yield motor.Op(self.get_tags,condition={"name":{"$in":userinfo.tags}})
+        if self.tags:
+            self.tags=[Tag(**tag) if tag else None for tag in self.tags]
+        self.render("tagsview.html",userinfo=userinfo,tags=self.tags)
 
     def post(self):
         pass
 
 class TagDetailHandler(BaseHandler):
+
+    def get_users(self,condition={},callback=checkinfo):
+        (self.db.users.find(condition).limit(5).to_list(callback=callback))
 
     @tornado.web.asynchronous
     @gen.engine
@@ -341,9 +388,18 @@ class TagDetailHandler(BaseHandler):
             self.redirect("/")
         taginfo=Tag(**taginfo)
         readyCon=False
+        users=yield motor.Op(self.get_users,condition={"email":{"$in":taginfo.followemails}})
+        followcount=len(taginfo.followemails)
+        self.users=[]
+        if users:
+            self.users=[ User(**user) if user else None for user in users]
         if userinfo:
             readyCon=checkTagCon(userinfo,tagname)
-        self.render("tag.html",taginfo=taginfo,al=readyCon)
+        self.render("tag.html",
+                taginfo=taginfo,
+                al=readyCon,
+                users=self.users,
+                count=followcount)
     
     def post(self):
         pass
@@ -358,7 +414,10 @@ class SearchHandler(BaseHandler):
 class PersonalPageHandler(BaseHandler):
 
     def get_posts(self,callback=checkinfo,page_num=0,condition={}):
-        (self.db.posts.find(condition).skip(int(page_num)*14).sort([('pub_date',-1)]).limit(10).to_list(callback=callback))  
+        (self.db.posts.find(condition).
+                skip(int(page_num)*14).
+                sort([('pub_date',-1)]).
+                limit(10).to_list(callback=callback))  
   
     @tornado.web.asynchronous
     @gen.engine
@@ -369,13 +428,16 @@ class PersonalPageHandler(BaseHandler):
         questions = yield motor.Op(self.get_posts,condition=condition)
         self.questions=[Post(**question) for question in questions]
         show=True
+        readlycontain=True
         email=self.get_secure_cookie("email")
         admin=yield motor.Op(self.db.users.find_one,{"email":email})
-        admin=User(**admin)
-        if admin.urlname==name or not admin:
-            show= False
-        readlycontain=check_contain(userinfo.email,admin.follow)
-        condition1={"comments.author_url":userinfo.urlname}
+        if admin:
+            admin=User(**admin)
+            if admin.urlname==name or not admin:
+                show= False
+            readlycontain=check_contain(userinfo.email,admin.follow)
+
+        condition1={"comments.email":userinfo.email}
         answers = yield motor.Op(self.get_posts,condition=condition1)
         answers =[Post(**answer) for answer in answers]
         self.render("personalpage.html",
@@ -406,14 +468,18 @@ class TagAttentionHandler(BaseHandler):
         if not userinfo:
             self.write("no that user")
         id=userinfo["_id"]
-        result=yield motor.Op(self.db.users.update,{"_id":id},{"$addToSet":{"tags":{"name":tagname}}})
+        result=yield motor.Op(self.db.users.update,
+                {"_id":id},
+                {"$addToSet":{"tags":tagname}})
         taginfo=yield motor.Op(self.db.tags.find_one,{"name":tagname})
-        result1=yield motor.Op(self.db.tags.update,{"_id":taginfo["_id"]},{"$addToSet":{"followemails":{"email":userinfo["email"]}}})
+        result1=yield motor.Op(self.db.tags.update,
+                {"_id":taginfo["_id"]},
+                {"$addToSet":{"followemails":userinfo["email"]}})
         self.finish()
 
 def checkTagCon(userinfo,tagname):
     for tag in userinfo.tags:
-        if tagname==tag.name:
+        if tagname==tag:
             return True
     return False
 
@@ -434,8 +500,12 @@ class UnfollowTagHandler(BaseHandler):
             self.redirct("/")
             return
         id=userinfo["_id"]
-        result=yield motor.Op(self.db.users.update,{"_id":id},{"$pull":{"tags":{"name":tagname}}})
-        result1=yield motor.Op(self.db.tags.update,{"_id":taginfo["_id"]},{"$pull":{"followemail":{"email":email}}})
+        result=yield motor.Op(self.db.users.update,
+                {"_id":id},
+                {"$pull":{"tags":tagname}})
+        result1=yield motor.Op(self.db.tags.update,
+                {"_id":taginfo["_id"]},
+                {"$pull":{"followemails":email}})
         self.finish()
 
 
@@ -443,7 +513,10 @@ class UnfollowTagHandler(BaseHandler):
 
 class UserInfoModule(tornado.web.UIModule):
     def render(self,userinfo,show,al):
-        return self.render_string("module/userinfo.html",userinfo=userinfo,show=show,al=al)
+        return self.render_string("module/userinfo.html",
+                userinfo=userinfo,
+                show=show,
+                al=al)
     
     def javascript_files(self):
         return "js/attention.js"
@@ -451,8 +524,12 @@ class UserInfoModule(tornado.web.UIModule):
 
 
 class TagModule(tornado.web.UIModule):
-    def render(self,taginfo,al):
-        return self.render_string("module/tag-side.html",taginfo=taginfo,al=al)
+    def render(self,taginfo,al,users,count):
+        return self.render_string("module/tag-side.html",
+                taginfo=taginfo,
+                al=al,
+                users=users,
+                count=count)
 
     def javascript_files(self):
         return "js/attention.js"
@@ -467,7 +544,8 @@ class PersonFollowHandler(BaseHandler):
         self.email=self.get_secure_cookie("email");
         if not self.email:
             self.redirct("/")
-        userinfo=yield motor.Op(self.db.users.find_one,{"email":self.email})
+        userinfo=yield motor.Op(self.db.users.find_one,
+                {"email":self.email})
         if not userinfo:
             self.redirect("/")
         userinfo=User(**userinfo)
@@ -479,16 +557,17 @@ class PersonFollowHandler(BaseHandler):
         if not followinfo:
             self.redirect("/")
         followinfo=User(**followinfo)
+
 #关注者插入一条关注他人的信息
-        following={}
-        following.update({"urlname":followinfo.urlname,"name":followinfo.name,"pic_url":followinfo.pic_url,"email":followinfo.email})
-        result=yield motor.Op(self.db.users.update,{"_id":userinfo.id},{"$addToSet":{"follow":following}})
+        result=yield motor.Op(self.db.users.update,
+                {"_id":userinfo.id},
+                {"$addToSet":{"followemails":followerEmail}})
+
 #被关注者插入一条被观者的信息
-        followed={}
-        followed.update({"urlname":userinfo.urlname,"name":userinfo.name,"pic_url":userinfo.pic_url,"email":userinfo.email})
         result1=yield motor.Op(self.db.users.update,
                 {"_id":followinfo.id},
-                {"$addToSet":{"followed":followed}})
+                {"$addToSet":{"followedemails":userinfo.email}})
+
         self.finish()
        
  

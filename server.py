@@ -17,7 +17,7 @@ application= tornado.web.Application([
 
     (r"/ask",AskHandler),
     (r"/question/answer",AnswerHandler),
-    (r"/test",TestHandler),
+    (r"/addtag",AddTagHandler),
     (r"/tagattention",TagAttentionHandler),
     (r"/unfollowtag",UnfollowTagHandler),
     (r"/u/(?P<name>.+)/?",PersonalPageHandler),
@@ -39,7 +39,7 @@ application= tornado.web.Application([
     template_path=os.path.join(os.path.dirname(__file__),"templates"),
     static_path=os.path.join(os.path.dirname(__file__), "static"),
     cookie_secret="bZJc2sWbQLKos6GkHn/VB9oXwQt8S0R0kRvJ5/xJ89E=",
-    ui_modules={"User":UserInfoModule,"TagSide":TagModule}
+    ui_modules={"User":UserInfoModule,"TagSide":TagModule,"HomeSide":HomeModule}
     )
 if __name__=="__main__":
     http_server=httpserver.HTTPServer(application)

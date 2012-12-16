@@ -12,11 +12,13 @@
             </div>
             <hr class="space" />
             <h3>
-                <a href="http://segmentfault.com/t/phonegap/followers">9</a> 人关注了该标签
+                <a href="/t/phonegap/followers">9</a> 人关注了该标签
             </h3>
-                  <a class="tip-pop" href="http://segmentfault.com/u/%E5%B4%87%E6%85%95" title="崇慕" data-tip="n:崇慕">
-                      <img class="avatar-24" src="http://sfault-avatar.b0.upaiyun.com/518/543/518543523-1030000000139122_tiny24" alt="崇慕" />
-                    </a>                 
+               {% for user in users %}
+                  <a class="tip-pop" href="/u/{{ user.urlname }}" title="{{ user.name }}" data-tip="{{ user.name }}">
+                      <img class="avatar-24" src="{{ static_url("") }}{{ user.pic_url }}" alt="{{ user.name }}" />
+                   </a>            
+                   {% end %}     
                     
    </aside>
    <aside class="box">

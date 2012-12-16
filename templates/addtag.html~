@@ -1,0 +1,34 @@
+{% extends "basepro.html" %}
+{% block content-main %}
+        <h2 class="common-title">我的个人资料</h2>
+        <div id="main" class="settings">
+        <form action="/addtag"  enctype="multipart/form-data"  method="post" class="session-form">
+            <div class="session-aside">                 
+                       
+                     
+                          <div class="change-avatar">
+                          <input type="file" name="tagpic" class="file" />
+                          
+                          </div>
+                                                                    从电脑中选择图片上传, 图像大小不要超过 2 MB
+            </div>
+           <div class="session-aside">                                     
+                          <div class="change-avatar">
+                          <input type="file" name="tagpicbig" class="file" />                        
+                          </div>
+                                                                    从电脑中选择图片上传大的tag图片, 图像大小不要超过 2 MB
+            </div>
+            <p>
+                <label for="setting-name">tag名称</label>
+                <input name="name" id="setting-name" type="text" maxlength="32" holder="tag名称" class="text-32" required />
+            </p>
+             <p>
+                <label for="setting-description">tag介绍</label>
+                <textarea name="introduce" id="setting-introduce" class="textarea-14" rows="4"></textarea>
+            </p>
+            <div class="form-action">
+                <input type="submit" class="btn btn-big" value="提交" />
+            </div>
+        </form>
+    </div>
+{% end %}

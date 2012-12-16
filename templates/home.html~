@@ -33,5 +33,5 @@
 
 
 {% block content-secondary %}
-                       {% include "home-side.html"%}                      
+                       {% module HomeSide(userinfo,tags) %}                      
 {% end %}
